@@ -10,15 +10,48 @@ const maxApples = 30;
 
 
 function check_result(x){
-    var input = document.getElementById("input").value;
-    if(input == x){next();lesson++;};
-    console.log(input);
-    console.log(lesson);
+    var input_value = document.getElementById("input").value;
+    var input =  document.getElementById("input");
+    var alertBox = document.getElementById("alertBox");
+    var answer = document.getElementById("answer");
+    var cap = document.getElementsByClassName("caption");
+    var wrongCross = document.getElementById("wrongCross");
+    if(input_value == x){
+        setTimeout(function(){
+        alertBox.style.visibility = "visible";
+        
+        cap[0].style = "opacity : 0;";
+        answer.style = "opacity : 0;";
+        },500
+        )
+        //next();
+        lesson++;
+    }
+    if(input_value != x){
+        wrongCross.style.visibility = "visible";
+        setTimeout(function(){
+            wrongCross.style.visibility = "visible";
+        },500)
+        setTimeout(function(){
+            wrongCross.style.visibility = "hidden";
+        },1500)
+
+    }
+   
  
 }
 function next()
 { 
         var input = document.getElementById("input");
+        var answer = document.getElementById("answer");
+        var cap = document.getElementsByClassName("caption");
+        setTimeout(function(){
+            alertBox.style.visibility = "hidden";
+            
+            cap[0].style = "opacity : 1;";
+            answer.style = "opacity : 1;";
+            },500
+            )
         setTimeout(function(){
         input.value = "";
         
@@ -29,7 +62,7 @@ function next()
         for(var i = numOfApples[lesson]; i < maxApples;i++){
             apples[i].style = "background-image: none;";
         }
-     },1000) //reset
+     },500) //reset
     
 }
 
