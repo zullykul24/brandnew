@@ -17,6 +17,7 @@ function check_result(x){
     var cap = document.getElementsByClassName("caption");
     var wrongCross = document.getElementById("wrongCross");
     if(input_value == x){
+        playAudio("right");
         setTimeout(function(){
         alertBox.style.visibility = "visible";
         
@@ -28,12 +29,16 @@ function check_result(x){
         lesson++;
     }
     if(input_value != x){
+        playAudio("wrong");
+        wrongCross.style = "background-size : 200px;"
         wrongCross.style.visibility = "visible";
         setTimeout(function(){
             wrongCross.style.visibility = "visible";
         },500)
         setTimeout(function(){
             wrongCross.style.visibility = "hidden";
+            wrongCross.style = "background-size : 0px;"
+
         },1500)
 
     }
@@ -105,13 +110,16 @@ function finish_screen()
 }   
 function restart()
 {
+    playAudio("backgroundMusic");
     var apples = document.getElementsByClassName("plot");
+    var contentncap = document.getElementById("contentncap");
     for(let i = 0;i < numOfApples[lesson]; i++){
         apples[i].style = "background-image: url('assets/apple.png');";
     }   //reset the variables;
     lesson = 0; 
    
     var cap = document.getElementById("caption");
+    contentncap.style.visibility = "visible";
  
     
 
@@ -122,20 +130,11 @@ function restart()
 }
 function startButton(){
     var img = document.getElementById("startButton");
-
-    var answer = document.getElementsByClassName("answer");
-    for(i = 0;i < answer.length; i++){answer[i].style.display = "none";}
-
-
-    var question_1 = document.getElementById("question_1");
-    var question_2 = document.getElementById("question_2");
-    var question_3 = document.getElementById("question_3");
-    question_1.hidden = true;
-    question_2.hidden = true;
-    question_3.hidden = true;
+    var contentncap = document.getElementById("contentncap");
+    var backgroundMusic = document.getElementById("backgroundMusic");
+    backgroundMusic.loop = true;
     img.hidden = false;
-
-    while(point > 0)subPoint();
+    contentncap.style.visibility = "hidden";
 
 }
 function playAudio(play) {

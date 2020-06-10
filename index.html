@@ -5,10 +5,10 @@
     <title>Điền tên cho ảnh</title>
     <link href="style.css" rel="stylesheet">
 </head>
-<body onload="restart()"><!--onload = startButton()-->
+<body onload="startButton()"><!--onload = startButton()-->
     <script type="text/javascript" src="game.js"></script>   
     <div class="mainbox">
-    <img id="startButton" src="assets/startButton.png" width="250px" height="250px" style="visibility: hidden;"  onclick="restart();"><!--Click start button to start the game-->
+    <img id="startButton" src="assets/startButton.png" width="250px" height="250px" style="visibility: visible;"  onclick="restart();"><!--Click start button to start the game-->
     <div class="headbox">
         <div class="back"> 
             <a id="backButton" >
@@ -17,7 +17,7 @@
             </a>
         </div>
     </div>
-    <div class="contentncap">
+    <div id="contentncap">
         <div class="caption" id="caption">
 			<div id="loa" onclick="playAudio('moveTheApples')"></div>
 			<div id="cauHoi">Có bao nhiêu quả táo ở trong hộp?</div>
@@ -79,7 +79,16 @@
 	</div> 
 	<audio id="moveTheApples">
         <source src="assets/moveapple.mp3" type="audio/ogg">
-    </audio>
+	</audio>
+	<audio id="wrong">
+		<source src="assets/wrong.mp3" type="audio/ogg">
+	</audio>
+	<audio id="right">
+		<source src="assets/right.mp3" type="audio/ogg">
+	</audio>
+	<audio id="backgroundMusic">
+		<source src="assets/backgroundmusic.mp3" type="audio/ogg" loop>
+	</audio>
    
 </body>
 </html>
