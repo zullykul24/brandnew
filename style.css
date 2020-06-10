@@ -16,7 +16,7 @@ body {
 .headbox {
     border-radius: 15px 15px 0px 0px  ;
    
-    background: rgb(12, 36, 87);
+    background: #ffffff;
     height: 48px;
     line-height: 48px;
     position: relative;
@@ -63,22 +63,8 @@ body {
     border-right: 15px solid white;
 }
 
-.rightbar {
-    height: 49px;
-    float: left;
-    background-color:#ffffff;
-    width: 760px;
-    
-   
 
-}
-.next {
-    height: 49px;
-    float: left;
-    width: 100px;
-    background-color: white;
-    border-top-right-radius: 15px;
-}
+
 .progress {
     padding-top: 3px ;
     height: 23px;
@@ -89,13 +75,7 @@ body {
     position: relative;
     border-radius: 10px;
 }
-.ball{
-    width: 21px;
-    height: 21px;
-    float: left;
-    position: relative;
-    background: url("assets/ball.png");
-}
+
 .contentncap {
     padding-top: 10px;
     margin-top: 1px;
@@ -195,29 +175,26 @@ height: 60px;
     font-size: 40px;
 
 }
-.submit {
-    
-    height: 25px;
+#xacNhan {
+    height: 50px;
+    width: 100px;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    background-color: aquamarine;
+    border-radius: 5px;
+    margin-left: 30px;
+    margin-top: 10px;
+    cursor: pointer;
 
 }
-.check_input {
-    float: left;
-    height: 140px;
-}
-.message {
-    float: right;
-    height: 140px;
-    text-align: center;
-    width: 190px;
-}
-.img {
-    height: 267px;
-    background-color: cyan;
-}
-.question{
-    float: right;
-    margin-right: 20px;
-}
+
+
+
+
+
 #startButton{
     position: absolute;
     top: 150px;

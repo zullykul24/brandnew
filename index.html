@@ -10,24 +10,11 @@
     <div class="mainbox">
     <img id="startButton" src="assets/startButton.png" width="250px" height="250px" style="visibility: hidden;"  onclick="restart();"><!--Click start button to start the game-->
     <div class="headbox">
-        <div class="back"> <!--Back button-->
+        <div class="back"> 
             <a id="backButton" >
                 <div class="arrow-left"></div>
                 <span>Quay lại</span>
             </a>
-        </div>
-        <div class="rightbar">
-            <div class="progress"> <!--balls container-->
-                <div class="ball" id="ball_1"></div> 
-                <div class="ball" id="ball_2"></div>
-                <div class="ball" id="ball_3"></div>
-                <div class="ball" id="ball_4"></div>
-                <div class="ball" id="ball_5"></div>
-            </div>
-        </div>
-        <div class="next" > <!--Next button-->
-            <p id="next_link" onclick="next();" style="cursor: pointer; width: 100px; height: 40px; 
-            margin-top: 3px; font-weight: bold; color: blue; visibility: hidden;"></p>
         </div>
     </div>
     <div class="contentncap">
@@ -78,8 +65,9 @@
 		<div id="answer">
 			<div id="cauTraLoi">Số quả táo là:</div>
 			<div id="dapAn">
-				<input id = "input" type="text" value="" maxlength="2" autofocus>
+				<input id = "input" type="text" value="" maxlength="2"  autofocus>
 			</div>
+			<div id="xacNhan" onclick="check_result(numOfApples[lesson])">Xác nhận</div>
 		</div>
     </div>
 	</div> 
