@@ -2,6 +2,7 @@ body {
     background: url("assets/newbackground.png") center;
    
     font-family: sans-serif;
+    user-select: none;
     
    
    
@@ -160,11 +161,11 @@ body {
     font-size: 30px;
     padding-top: 0px;
     line-height: 100px;
-    
+   
    
 }
 #next {
-    margin-top: 110px;
+    margin-top: 120px;
     margin-left: 200px;
     position: absolute;
     width: 200px;
@@ -175,6 +176,7 @@ body {
     line-height: 50px;
     cursor: pointer;
     border-radius: 5px;
+    
     
     
 }
