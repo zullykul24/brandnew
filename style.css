@@ -20,10 +20,11 @@ body {
 .headbox {
     border-radius: 15px 15px 0px 0px  ;
    
-    background: #ffffff;
-    height: 48px;
+   
+    height: 50px;
     line-height: 48px;
     position: relative;
+    border-bottom: gray solid 1px;
 }
 .back {
     height: 49px;
@@ -33,12 +34,12 @@ body {
     border-top-left-radius: 15px;
     text-align: center;
     font-family: sans-serif;
-    background-color: #ffffff;
+    
 }
 
 #backButton {
     font-size: 18px;
-    color: rgb(39, 125, 175);
+   
     text-decoration: none;
 }
 
@@ -50,7 +51,7 @@ body {
     height: 0;
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
-    border-right: 15px solid #246EA1 ;
+    border-right: 15px solid black ;
     position: relative;
     border-radius: 50%;
 }
@@ -67,18 +68,30 @@ body {
     border-right: 15px solid white;
 }
 
-
-
-.progress {
-    padding-top: 3px ;
-    height: 23px;
-    width: 560px;
-    margin-left: 100px;
-    margin-top: 5px;
-    background-color: #f1dede;
-    position: relative;
+#enableBackgroundMusic {
+    margin-left: 430px;
+    float: left;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    font-family: sans-serif;
+    background-color: aquamarine;
+    cursor: pointer;
     border-radius: 10px;
 }
+#enableSoundEffects {
+    margin-left: 5px;
+    float: left;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    font-family: sans-serif;
+    background-color: aquamarine;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
 
 #contentncap {
     padding-top: 10px;
