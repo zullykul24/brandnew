@@ -2,8 +2,11 @@ var lesson = 0;
 const numOfLesson = 5;
 const numOfApples = [];
 const maxApples = 30;
-var backgroundMusic = true;
+var numOfHint = 3;
+var isHint = false;
+var backgroundMusic = false;
 var soundEffects = true;
+var optionBox = document.getElementById("optionBox");
 function check_result(x){
     var input_value = document.getElementById("input").value; 
     var answer = document.getElementById("answer");
@@ -11,15 +14,27 @@ function check_result(x){
     var wrongCross = document.getElementById("wrongCross");
     var messsage = document.getElementById("chucMung");
     var next = document.getElementById("next");
+    var optionBox = document.getElementById("optionBox");
+    var headbox = document.getElementById("headbox");
+    var box = document.getElementById("box");
+    
     if(input_value == x){
+        
         if(soundEffects == true){playAudio("right");}
-        setTimeout(function(){          
+        setTimeout(function(){         
+             
             alertBox.style.visibility = "visible";
-            cap[0].style = "opacity : 0;";
-            answer.style = "opacity : 0;";
+            next.style.visibility= "visible";
+            optionBox.style.visibility = "hidden";
+            headbox.style.filter = "blur(5px)";
+            box.style.filter = "blur(5px)"; 
+            cap[0].style.filter = "blur(5px)";
+            answer.style.filter = "blur(5px)";
         },500)
+
         if(lesson == numOfLesson - 1){
             messsage.innerHTML = "Bạn đã hoàn thành trò chơi! Chúc mừng";
+            messsage.style = "font-size:20px; line-height:20px; margin-top:15px";
             next.innerHTML = "Chơi lại";
             next.onclick = function(){
                 location.reload();
@@ -49,10 +64,20 @@ function next()
         var alertBox = document.getElementById("alertBox");
         var messsage = document.getElementById("chucMung");
         var next = document.getElementById("next");
+        var optionBox = document.getElementById("optionBox");
+        var box = document.getElementById("box");
+        var headbox = document.getElementById("headbox");
+        
+
         setTimeout(function(){
-            alertBox.style.visibility = "hidden";    
-            cap[0].style = "opacity : 1;";
-            answer.style = "opacity : 1;";
+            optionBox.style.visibility = "visible";
+           // messsage.style.visibility = "visible";
+            next.style.visibility = "hidden";
+            alertBox.style.visibility = "hidden";  
+            headbox.style.filter = "none";
+            box.style.filter = "none";  
+            cap[0].style.filter = "none";
+            answer.style.filter = "none";
         },500)
         setTimeout(function(){
             input.value = "";
@@ -69,12 +94,16 @@ function restart()
 { 
     for(var i = 0;i < numOfLesson;i++){numOfApples[i]= Math.floor((Math.random() * 30) + 1);}// generate array of random integers from 1 to 30
     lesson = 0; 
-    playAudio("backgroundMusic");
+    if(backgroundMusic == true)playAudio("backgroundMusic");
     var apples = document.getElementsByClassName("plot");
     var contentncap = document.getElementById("contentncap");
     var answer = document.getElementById("answer");
     var cap = document.getElementsByClassName("caption");
     var alertBox = document.getElementById("alertBox");
+    var numberOfHintLeft = document.getElementById("numberOfHintLeft");
+    var optionBox = document.getElementById("optionBox");
+    numberOfHintLeft.innerHTML = numOfHint;
+    optionBox.style.visibility = "visible";
 
     for(var i = 0;i < numOfApples[lesson]; i++){
         apples[i].style = "background-image: url('assets/apple.png');";
@@ -137,5 +166,74 @@ function loa(){
 function playAudio(play) {
     document.getElementById(play).play();
 }
+function clearInput(){
+    var input = document.getElementById("input");
+    input.value = "";
+}
+function hint(){
+    var input_value = document.getElementById("input").value; 
+    var answer = document.getElementById("answer");
+    var cap = document.getElementsByClassName("caption");
+    var wrongCross = document.getElementById("wrongCross");
+    var messsage = document.getElementById("chucMung");
+    var next = document.getElementById("next");
+    var optionBox = document.getElementById("optionBox");
+    var headbox = document.getElementById("headbox");
+    var numberOfHintLeft = document.getElementById("numberOfHintLeft");
+    var box = document.getElementById("box");
+    var hintBox = document.getElementById("hintBox");
+    headbox.style.filter = "blur(5px)";
+    box.style.filter = "blur(5px)";
+    
 
+
+    cap[0].style.filter = "blur(5px)";
+    answer.style.filter = "blur(5px)";
+    alertBox.style.visibility = "visible";
+    next.style.visibility = "hidden";
+    hintBox.style.visibility = "visible";
+    hintBox.innerHTML = "Được rồi";
+    
+    if(numOfHint > 0){
+        messsage.innerHTML = "Mỗi hàng có 10 quả táo, số quả táo ở đây là: "+ numOfApples[lesson];
+        messsage.style = "font-size:20px; line-height:20px; margin-top:15px";
+        numOfHint = numOfHint - 1;
+        numberOfHintLeft.innerHTML = numOfHint;
+    }
+    else{
+        messsage.innerHTML = "Bạn đã sử dụng hết quyền trợ giúp";
+    }
+    
+    hintBox.onclick = function(){
+    headbox.style.filter = "none";
+    box.style.filter = "none";
+    cap[0].style.filter = "none";
+    answer.style.filter = "none";
+    alertBox.style.visibility = "hidden";
+    messsage.innerHTML = "Bạn trả lời đúng rồi";
+    //next.style.visibility = "visible";
+    hintBox.style.visibility = "hidden";
+    
+    messsage.style = "margin-top:30px";
+    }
+   
+
+}
+function blockClick(){
+    var loa = document.getElementById("loa");
+    var enableBackgroundMusic = document.getElementById("enableBackgroundMusic");
+    var enableSoundEffects = document.getElementById("enableSoundEffects");
+    loa.onclick = click();
+    enableBackgroundMusic.onclick = click();
+    enableSoundEffects.onclick = click();
+}
+function enableClick(){
+    var loa = document.getElementById("loa");
+    var enableBackgroundMusic = document.getElementById("enableBackgroundMusic");
+    var enableSoundEffects = document.getElementById("enableSoundEffects");
+    loa.onclick = loa();
+    enableBackgroundMusic.onclick = enableBackgroundMusic();
+    enableSoundEffects.onclick = enableSoundEffects();
+
+}
 

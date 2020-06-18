@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Điền tên cho ảnh</title>
     <link href="style.css" rel="stylesheet">
 </head>
 <body onload="startButton()"><!--onload = startButton()-->
     <script type="text/javascript" src="game.js"></script>   
-    <div class="mainbox">
+    <div id="mainbox">
     <img id="startButton" src="assets/startButton.png" width="250px" height="250px" style="visibility: visible;"  onclick="restart();"><!--Click start button to start the game-->
-    <div class="headbox">
+    <div id="headbox">
         <div class="back"> 
             <a id="backButton" >
                 <div class="arrow-left"></div>
@@ -18,14 +19,19 @@
 		</div>
 		<div id="enableBackgroundMusic" onclick="enableBackgroundMusic()">Nhạc nền: BẬT</div>
 		<div id="enableSoundEffects" onclick="enableSoundEffects()">Hiệu ứng: BẬT</div>
+		<div id="numberOfHint">
+			<img src="assets/bulb.png" id="bulb">
+			<div id="numberOfHintLeft" ></div>
+		</div>
     </div>
     <div id="contentncap">
         <div class="caption" id="caption">
 			<div id="loa" onclick="loa()"></div>
 			<div id="cauHoi">Có bao nhiêu quả táo ở trong hộp?</div>
 		</div>
-        <div class="content">                                          
-            <div class="box"> 
+        <div class="content"> 
+			<div id="boxAndOptionbox">                                      
+            <div id="box"> 
 				<div id="row1" class="row">
 				<div class="plot"></div>
 				<div class="plot"></div>
@@ -61,13 +67,23 @@
 						<div class="plot"></div>
 						<div class="plot"></div>
 						<div class="plot"></div>
-						</div>               
-			</div>  
+						</div> 
+
+			</div> 
+			<div id="optionBox">
+				<div id="refreshIcon" title="Làm mới đáp án" onclick="clearInput()"></div>
+				<div id="hintIcon" title="Gợi ý" onclick="hint()"></div>
+				<div id="nextIcon" title="Bỏ qua" ></div>
+			</div>
+			</div> 
 			<div id="wrongCross"></div>
+	
 			<div id="alertBox">
 				<div id="chucMung">Bạn trả lời đúng rồi</div>
 				<div id="next" onclick="next();">Câu tiếp theo</div>
+				<div id="hintBox"></div>
 			</div>
+			
 			
 		</div>
 		<div id="answer">
@@ -88,7 +104,7 @@
 	<audio id="right">
 		<source src="assets/right.mp3" type="audio/ogg">
 	</audio>
-	<audio id="backgroundMusic">
+	<audio id="backgroundMusic" preload="auto">
 		<source src="assets/backgroundmusic.mp3" type="audio/ogg" loop>
 	</audio>
    

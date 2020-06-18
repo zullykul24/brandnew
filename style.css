@@ -7,17 +7,18 @@ body {
    
    
 }
-.mainbox {
+#mainbox {
     z-index: 0;
     position: relative;
     margin: 15px auto 20px;
-    width: 960px;
+    width: 1000px;
     min-height: 600px;
     border-radius: 15px;
     background: #ffffff;
+    user-select: none;
     
 }
-.headbox {
+#headbox {
     border-radius: 15px 15px 0px 0px  ;
    
    
@@ -69,7 +70,7 @@ body {
 }
 
 #enableBackgroundMusic {
-    margin-left: 430px;
+    margin-left: 230px;
     float: left;
     width: 200px;
     height: 50px;
@@ -89,6 +90,30 @@ body {
     background-color: aquamarine;
     cursor: pointer;
     border-radius: 10px;
+}
+#numberOfHint {
+    float: left;
+    width: 240px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 30px;
+    
+}
+#bulb {
+    float: left;
+    margin-left: 90px;
+    width: 50px;
+    height: 50px;
+}
+#numberOfHintLeft {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 30px;
+    float: left;
+
 }
 
 
@@ -136,7 +161,7 @@ body {
     margin-left: 0px;
     margin-top: 30px;
 }
-.box {
+#box {
     width: 600px;
     float: left;
     height: 300px;
@@ -150,36 +175,39 @@ body {
     z-index: -1;
 
 }
+
 #alertBox {
-    width: 600px;
-    height: 300px;
+    width: 400px;
+    height: 200px;
    
     
     background-color: #ffffff;
-    margin-left: 150px;
+    margin-left: 250px;
     border-radius: 20px;
   
     visibility: hidden;
     position: relative;
     z-index: 1;
+    
    
   
 }
 #chucMung {
     position: absolute;
-    width: 600px;
-    height: 100px;
-    border: black solid 2px;
+    width: 200px;
+    height: 50px;
+    
     text-align: center;
-    font-size: 30px;
+    font-size: 20px;
     padding-top: 0px;
     line-height: 100px;
+    margin-left: 100px;
    
    
 }
 #next {
     margin-top: 120px;
-    margin-left: 200px;
+    margin-left: 100px;
     position: absolute;
     width: 200px;
     height: 50px;
@@ -189,9 +217,22 @@ body {
     line-height: 50px;
     cursor: pointer;
     border-radius: 5px;
-    
-    
-    
+  
+}
+#hintBox {
+    margin-top: 100px;
+    margin-left: 100px;
+   position: absolute;
+    width: 200px;
+    height: 50px;
+    background-color: aquamarine;
+    visibility: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    border-radius: 5px;
+
 }
 #wrongCross {
     width: 200px;
@@ -226,6 +267,48 @@ height: 60px;
     background-size: 60px;
     float: left;
 }
+#optionBox {
+    width: 60px;
+    height: 300px;
+    border: black 1px solid;
+    border-radius: 10px;
+    float: left;
+    position: relative;
+    z-index: 1;
+    margin-left: 60px;
+    visibility: hidden;
+}
+#refreshIcon {
+    width: 60px;
+    height: 60px;
+    background-image: url("assets/refresh.png") ;
+    background-size: 40px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-top: 30px;
+    
+}
+#hintIcon {
+    width: 60px;
+    height: 60px;
+    background-image: url("assets/bulb.png");
+    background-size: 40px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-top: 30px;
+}
+#nextIcon {
+    width: 60px;
+    height: 60px;
+    background-image: url("assets/nextIcon.png");
+    background-size: 60px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
 
 #answer {
     width: 960px;
@@ -277,8 +360,8 @@ height: 60px;
 
 #startButton{
     position: absolute;
-    top: 150px;
+    top: 160px;
     z-index: 3;
-    left: 345px;
+    left: 355px;
     cursor: pointer;
 }
