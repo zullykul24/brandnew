@@ -1,5 +1,6 @@
+
 var lesson = 0; 
-const numOfLesson = 5;
+const numOfLesson = 3;
 const numOfApples = [];
 const maxApples = 30;
 var numOfHint = 3;
@@ -15,33 +16,76 @@ function check_result(x){
     var messsage = document.getElementById("chucMung");
     var next = document.getElementById("next");
     var optionBox = document.getElementById("optionBox");
-    var headbox = document.getElementById("headbox");
+    var headBox = document.getElementById("headbox");
+    var mainBox = document.getElementById("mainbox");
     var box = document.getElementById("box");
-    
-    if(input_value == x){
-        
+    var nameOfPicture = document.getElementById("nameOfPicture");  
+    var alertBox = document.getElementById("alertBox");  
+    var progress = document.getElementById("progress");
+    if(input_value == x && lesson == numOfLesson - 1){
         if(soundEffects == true){playAudio("right");}
-        setTimeout(function(){         
-             
-            alertBox.style.visibility = "visible";
-            next.style.visibility= "visible";
-            optionBox.style.visibility = "hidden";
-            headbox.style.filter = "blur(5px)";
-            box.style.filter = "blur(5px)"; 
-            cap[0].style.filter = "blur(5px)";
-            answer.style.filter = "blur(5px)";
+        setTimeout(function(){  
+            nameOfPicture.style.visibility = "visible";
+            if(x < 10)nameOfPicture.innerHTML = x + " quả";
+            else nameOfPicture.innerHTML = (x - x%10)/10 + " chục và " + x%10 + " quả"; 
+           
         },500)
+        setTimeout(function(){
+            headbox.style.filter = "blur(5px)";
+        box.style.filter = "blur(5px)";
+    
 
-        if(lesson == numOfLesson - 1){
+
+        cap[0].style.filter = "blur(5px)";
+        answer.style.filter = "blur(5px)";
+        optionBox.style.filter = "blur(5px)";
+        nameOfPicture.style.filter = "blur(5px)";
+        alertBox.style.visibility = "visible";
             messsage.innerHTML = "Bạn đã hoàn thành trò chơi! Chúc mừng";
             messsage.style = "font-size:20px; line-height:20px; margin-top:15px";
             next.innerHTML = "Chơi lại";
             next.onclick = function(){
                 location.reload();
             }
-        }
-        else lesson++;
+        },1000)
+        
     }
+    else if(input_value == x && lesson < numOfLesson - 1){
+        lesson = lesson + 1;
+        
+        if(soundEffects == true){playAudio("right");}
+        setTimeout(function(){  
+            nameOfPicture.style.visibility = "visible";
+            if(x < 10)nameOfPicture.innerHTML = x + " quả";
+            else nameOfPicture.innerHTML = (x - x%10)/10 + " chục và " + x%10 + " quả"; 
+           
+        },500)
+        
+        
+        setTimeout(function(){
+            mainBox.style.filter =   "blur(5px)";
+            nameOfPicture.style.visibility = "hidden";
+        },1500)
+        setTimeout(function(){
+            mainBox.style.filter =   "none";
+            input.value = "";
+            var apples = document.getElementsByClassName("plot");
+            for(var i = 0;i < numOfApples[lesson]; i++){
+            apples[i].style = "background-image: url('assets/apple.png');";
+            }
+            for(var i= numOfApples[lesson]; i < maxApples;i++){
+                apples[i].style = "background-image: none;";
+            }
+            progress.innerHTML = "Tiến trình: " + (lesson + 1) + "/" + numOfLesson;
+        },3000) 
+        
+    }
+    
+        
+
+        
+      
+    
     if(input_value != x){
         if(soundEffects == true){playAudio("wrong");}
         wrongCross.style = "background-size : 200px;"
@@ -54,42 +98,10 @@ function check_result(x){
             wrongCross.style = "background-size : 0px;"
 
         },1500)
+        
     }
 }
-function next()
-{ 
-        var input = document.getElementById("input");
-        var answer = document.getElementById("answer");
-        var cap = document.getElementsByClassName("caption");
-        var alertBox = document.getElementById("alertBox");
-        var messsage = document.getElementById("chucMung");
-        var next = document.getElementById("next");
-        var optionBox = document.getElementById("optionBox");
-        var box = document.getElementById("box");
-        var headbox = document.getElementById("headbox");
-        
 
-        setTimeout(function(){
-            optionBox.style.visibility = "visible";
-           // messsage.style.visibility = "visible";
-            next.style.visibility = "hidden";
-            alertBox.style.visibility = "hidden";  
-            headbox.style.filter = "none";
-            box.style.filter = "none";  
-            cap[0].style.filter = "none";
-            answer.style.filter = "none";
-        },500)
-        setTimeout(function(){
-            input.value = "";
-            var apples = document.getElementsByClassName("plot");
-            for(var i = 0;i < numOfApples[lesson]; i++){
-            apples[i].style = "background-image: url('assets/apple.png');";
-            }
-            for(var i = numOfApples[lesson]; i < maxApples;i++){
-                apples[i].style = "background-image: none;";
-            }
-        },500) 
-}
 function restart()
 { 
     for(var i = 0;i < numOfLesson;i++){numOfApples[i]= Math.floor((Math.random() * 30) + 1);}// generate array of random integers from 1 to 30
@@ -102,6 +114,11 @@ function restart()
     var alertBox = document.getElementById("alertBox");
     var numberOfHintLeft = document.getElementById("numberOfHintLeft");
     var optionBox = document.getElementById("optionBox");
+    var bulbHint = document.getElementById("numberOfHint");
+    var progress = document.getElementById("progress");
+    progress.style.visibility = "visible";
+    progress.innerHTML = "Tiến trình: " + (lesson + 1) + "/" + numOfLesson;
+    bulbHint.style.visibility = "visible";
     numberOfHintLeft.innerHTML = numOfHint;
     optionBox.style.visibility = "visible";
 

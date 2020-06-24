@@ -27,58 +27,27 @@ body {
     position: relative;
     border-bottom: gray solid 1px;
 }
-.back {
-    height: 49px;
-    width: 100px;
-   
+#progress {
+    margin-left: 30px;
     float: left;
-    border-top-left-radius: 15px;
-    text-align: center;
-    font-family: sans-serif;
-    
-}
-
-#backButton {
-    font-size: 18px;
-   
-    text-decoration: none;
-}
-
-.back .arrow-left {
-    top: -2px;
-    vertical-align: middle;
-    display: inline-block;
-    width: 0;
-    height: 0;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    border-right: 15px solid black ;
-    position: relative;
-    border-radius: 50%;
-}
-
-.back .arrow-left::before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    right: -18px;
-    top: -15px;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    border-right: 15px solid white;
+    width: 200px;
+    height: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    visibility: hidden;
 }
 
 #enableBackgroundMusic {
-    margin-left: 230px;
+    margin-left: 30px;
     float: left;
     width: 200px;
     height: 50px;
     text-align: center;
-    font-family: sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background-color: aquamarine;
     cursor: pointer;
     border-radius: 10px;
+    font-size: 15px;
 }
 #enableSoundEffects {
     margin-left: 5px;
@@ -86,10 +55,11 @@ body {
     width: 200px;
     height: 50px;
     text-align: center;
-    font-family: sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background-color: aquamarine;
     cursor: pointer;
     border-radius: 10px;
+    font-size: 15px;
 }
 #numberOfHint {
     float: left;
@@ -98,6 +68,7 @@ body {
     line-height: 50px;
     text-align: center;
     font-size: 30px;
+    visibility: hidden;
     
 }
 #bulb {
@@ -141,25 +112,25 @@ body {
     width: 40px;
     height: 40px;
     background-size: 40px;
-    margin-left: 100px;
+    margin-left: 200px;
     margin-top: 10px;
     cursor: pointer;
     float: left;
 }
 #cauHoi {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     position: relative;
     margin-left: 30px;
     float: left;
 }
 .content {
     width: 960px;
-    height: 330px;
+    height: 300px;
 
     background-color: #ffffff;
     margin-left: 0px;
-    margin-top: 30px;
+    margin-top: 0px;
 }
 #box {
     width: 600px;
@@ -184,10 +155,11 @@ body {
     background-color: #ffffff;
     margin-left: 250px;
     border-radius: 20px;
+    top: 50px;
   
     visibility: hidden;
     position: relative;
-    z-index: 1;
+    z-index: 2;
     
    
   
@@ -314,14 +286,14 @@ height: 60px;
     width: 960px;
     height: 70px;
     line-height: 70px;
-    font-size: 50px;
+    font-size: 30px;
     text-align: center;
 }
 #cauTraLoi {
     margin-left: 300px;
     float: left;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 40px;
+    font-size: 30px;
 }
 #dapAn {
     float: left;
@@ -331,11 +303,11 @@ height: 60px;
 
 }
 #input {
-    height: 50px;
-    width: 50px;
-    line-height: 50px;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 40px;
+    font-size: 30px;
 
 }
 #xacNhan {
@@ -353,7 +325,18 @@ height: 60px;
     cursor: pointer;
 
 }
-
+#nameOfPicture {
+    float: left;
+    width: 600px;
+    height: 70px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    line-height: 70px;
+    font-size: 30px;
+    margin-left: 150px;
+    
+    visibility: hidden;
+}
 
 
 
