@@ -4,18 +4,18 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Điền tên cho ảnh</title>
-    <link href="style.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+	<script type="text/javascript" src="game.js"></script> 
 </head>
-<body onload ="startButton()"><!--onload = startButton()-->
-    <script type="text/javascript" src="game.js"></script>   
+<body onload ="startWithButton()">
     <div id="mainbox">
     <img id="startButton" src="assets/startButton.png" width="250px" height="250px" style="visibility: visible;"  onclick="restart();"><!--Click start button to start the game-->
     <div id="headbox">
         <div id="progress"> 
             Tiến trình: 1/5
 		</div>
-		<div id="enableBackgroundMusic" onclick="enableBackgroundMusic()">Nhạc nền: BẬT</div>
-		<div id="enableSoundEffects" onclick="enableSoundEffects()">Hiệu ứng: BẬT</div>
+		<div id="enableBackgroundMusic" onclick="enableBackgroundMusicFunction()">Nhạc nền: BẬT</div>
+		<div id="enableSoundEffects" onclick="enableSoundEffectsFunction()">Hiệu ứng: BẬT</div>
 		<div id="numberOfHint">
 			<img src="assets/bulb.png" id="bulb">
 			<div id="numberOfHintLeft" ></div>
@@ -23,23 +23,23 @@
     </div>
     <div id="contentncap">
         <div class="caption" id="caption">
-			<div id="loa" onclick="loa()"></div>
+			<div id="loa" ></div><!--onclick="loaFunction()"-->
 			<div id="cauHoi">Có bao nhiêu quả táo ở trong hộp?</div>
 		</div>
         <div class="content"> 
 			<div id="boxAndOptionbox">                                      
             <div id="box"> 
 				<div id="row1" class="row">
-				<div class="plot"></div>
-				<div class="plot"></div>
-				<div class="plot"></div>
-				<div class="plot"></div>
-				<div class="plot"></div>
-				<div class="plot"></div>
-				<div class="plot"></div>
-				<div class="plot"></div>
-				<div class="plot"></div>
-				<div class="plot"></div>
+					<div class="plot"></div>
+					<div class="plot"></div>
+					<div class="plot"></div>
+					<div class="plot"></div>
+					<div class="plot"></div>
+					<div class="plot"></div>
+					<div class="plot"></div>
+					<div class="plot"></div>
+					<div class="plot"></div>
+					<div class="plot"></div>
 				</div>
 				<div id="row2" class="row">
 					<div class="plot"></div>
@@ -52,33 +52,34 @@
 					<div class="plot"></div>
 					<div class="plot"></div>
 					<div class="plot"></div>
-					</div>
-					<div id="row3" class="row">
-						<div class="plot"></div>
-						<div class="plot"></div>
-						<div class="plot"></div>
-						<div class="plot"></div>
-						<div class="plot"></div>
-						<div class="plot"></div>
-						<div class="plot"></div>
-						<div class="plot"></div>
-						<div class="plot"></div>
-						<div class="plot"></div>
-						</div> 
+				</div>
+				<div id="row3" class="row">
+					<div class="plot"></div>
+					<div class="plot"></div>
+					<div class="plot"></div>
+					<div class="plot"></div>
+					<div class="plot"></div>
+					<div class="plot"></div>
+					<div class="plot"></div>
+					<div class="plot"></div>
+					<div class="plot"></div>
+					<div class="plot"></div>
+				</div> 
 
 			</div> 
 			<div id="optionBox">
-				<div id="refreshIcon" title="Làm mới đáp án" onclick="clearInput()"></div>
-				<div id="hintIcon" title="Gợi ý" onclick="hint()"></div>
+				<div id="refreshIcon" title="Làm mới đáp án" ></div><!--onclick="clearInput()"-->
+				<div id="hintIcon" title="Gợi ý" ></div><!---->
 				<div id="nextIcon" title="Bỏ qua" ></div>
 			</div>
 			</div> 
 			<div id="wrongCross"></div>
 	
 			<div id="alertBox">
-				<div id="chucMung">Bạn trả lời đúng rồi</div>
-				<div id="next" onclick="next();">Câu tiếp theo</div>
+				<div id="message"></div>
+				<div id="next"></div>
 				<div id="hintBox"></div>
+				<div id="denyBox">Từ chối</div>
 			</div>
 			
 			
@@ -88,7 +89,7 @@
 			<div id="dapAn">
 				<input id = "input" type="text" value="" maxlength="2"  autofocus>
 			</div>
-			<div id="xacNhan" onclick="check_result(numOfApples[lesson])">Xác nhận</div>
+			<div id="xacNhan" onclick="checkResult(numOfApples[lesson])">Xác nhận</div><!--onclick="checkResult(numOfApples[lesson])"-->
 		</div>
 		<div id="nameOfPicture">5 quar taso</div>
     </div>
