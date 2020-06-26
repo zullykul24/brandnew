@@ -1,8 +1,15 @@
 
+
+
+
+//var data = '{ "numOfLesson": 3,"maxApples": 30}';
+//var obj = JSON.parse(data);
+
+
 var lesson = 0; 
-const numOfLesson = 3;
+const numOfLesson = obj.numOfLesson;
 const numOfApples = [];
-const maxApples = 30;
+const maxApples = obj.maxApples;
 var numOfHint = Math.round(numOfLesson / 2);
 var isHint = false;
 var backgroundMusicOn = false;
@@ -28,6 +35,8 @@ var nameOfPicture = document.getElementById("nameOfPicture");
 var alertBox = document.getElementById("alertBox");  
 
 var apples = document.getElementsByClassName("plot");
+var completedSound = document.getElementById("completed");
+var celebGif = document.getElementById("celeb");
 
 
     
@@ -52,6 +61,17 @@ var apples = document.getElementsByClassName("plot");
             messsage.style = "font-size:20px; line-height:20px; margin-top:15px;";
             next.innerHTML = "Chơi lại";
             next.style.visibility = "visible";
+            celebGif.style.visibility = "visible";
+            
+            if(soundEffectsOn == true){
+                playAudio("completed");
+                completedSound.volume = 1;
+            }
+            else{
+                completedSound.volume = 0;
+            }
+
+
             next.onclick = function(){
                 location.reload();
             }
@@ -105,7 +125,7 @@ var apples = document.getElementsByClassName("plot");
 
 function restart()
 { 
-    for(var i = 0;i < numOfLesson;i++){numOfApples[i]= Math.floor((Math.random() * 30) + 1);}// generate array of random integers from 1 to 30
+    for(var i = 0;i < numOfLesson;i++){numOfApples[i]= Math.floor((Math.random() * maxApples) + 1);}// generate array of random integers from 1 to 30
     lesson = 0; 
     if(backgroundMusicOn == true)playAudio("backgroundMusic");
     var optionBox = document.getElementById("optionBox");
@@ -122,12 +142,12 @@ function restart()
     var progress = document.getElementById("progress");
 
     document.getElementById("loa").addEventListener("click", loaFunction);
-    //document.getElementById("xacNhan").addEventListener("click", checkResult);
+    //document.getElementById("confirm").addEventListener("click", checkResult);
     
     document.getElementById("refreshIcon").addEventListener("click",clearInput);
     document.getElementById("hintIcon").addEventListener("click", hint);
     document.getElementById("nextIcon").addEventListener("click", nextQuestion);
-    var nextIcon = document.getElementById("nextIcon");
+   
     progress.style.visibility = "visible";
     progress.innerHTML = "Tiến trình: " + (lesson + 1) + "/" + numOfLesson;
     bulbHint.style.visibility = "visible";
@@ -147,10 +167,15 @@ function restart()
 function startWithButton(){
     var startButton = document.getElementById("startButton");
     var contentncap = document.getElementById("contentncap");
+    var enableBackgroundMusic = document.getElementById("enableBackgroundMusic");
+    var enableSoundEffects = document.getElementById("enableSoundEffects");
     var backgroundMusic = document.getElementById("backgroundMusic");
     backgroundMusic.loop = true;
     startButton.hidden = false;
     contentncap.style.visibility = "hidden";
+    enableBackgroundMusic.addEventListener("click", enableBackgroundMusicFunction);
+    enableSoundEffects.addEventListener("click", enableSoundEffectsFunction);
+
 
 }
 function enableBackgroundMusicFunction(){
@@ -175,12 +200,12 @@ function enableSoundEffectsFunction(){
     if(soundEffectsOn == true){
         soundEffectsOn = false;
         enableSoundEffects.style = "background-color: bisque;"
-        enableSoundEffects.innerHTML = "Hiệu ứng: TẮT"
+        enableSoundEffects.innerHTML = "Âm thanh: TẮT"
     }
     else {
         soundEffectsOn = true;
         enableSoundEffects.style = "background-color: aquamarine;"
-        enableSoundEffects.innerHTML = "Hiệu ứng: BẬT"
+        enableSoundEffects.innerHTML = "Âm thanh: BẬT"
     }
 }
 function loaFunction(){
@@ -206,7 +231,7 @@ function click(){
 function hint(){
    
     var answer = document.getElementById("answer");
-    var cap = document.getElementsByClassName("caption");
+    var caption = document.getElementById("caption");
    
     var messsage = document.getElementById("message");
     var next = document.getElementById("next");
@@ -218,7 +243,7 @@ function hint(){
     var enableBackgroundMusic = document.getElementById("enableBackgroundMusic");
     var enableSoundEffects = document.getElementById("enableSoundEffects");
     var loa = document.getElementById("loa");
-    var xacNhan = document.getElementById("xacNhan");
+    var confirm = document.getElementById("confirm");
     var input = document.getElementById("input");
     var refreshIcon = document.getElementById("refreshIcon");
     var hintIcon = document.getElementById("hintIcon");
@@ -239,14 +264,12 @@ function hint(){
     loa.removeEventListener("click",loaFunction);
     refreshIcon.removeEventListener("click",clearInput);
     hintIcon.removeEventListener("click",hint);
+    nextIcon.removeEventListener("click",nextQuestion);
+    enableBackgroundMusic.removeEventListener("click", enableBackgroundMusicFunction);
+    enableSoundEffects.removeEventListener("click", enableSoundEffectsFunction);
     
     
-    /*xacNhan.onclick = click();
-    refreshIcon.onclick = click();
-    hintIcon.onclick = click();
-    nextIcon.onclick = click();
-    enableBackgroundMusic.onclick = click();
-    enableSoundEffects.onclick = click();*/
+    confirm.style.visibility = "hidden";
     input.disabled = true;
     
     if(numOfHint > 0){
@@ -261,28 +284,26 @@ function hint(){
     }
     
     hintBox.onclick = function(){
-    headbox.style.filter = "none";
-    box.style.filter = "none";
-    caption.style.filter = "none";
-    answer.style.filter = "none";
-    alertBox.style.visibility = "hidden";
-    optionBox.style.filter = "none";
-    
-    //next.style.visibility = "visible";
-    hintBox.style.visibility = "hidden";
-    
-    messsage.style = "margin-top:30px";
-    loa.addEventListener("click", loaFunction);
-    refreshIcon.addEventListener("click",clearInput);
-    //hintIcon.addEventListener("click", hint);
-    
-    /*xacNhan.onclick = check_result(numOfApples[lesson]);
-    refreshIcon.onclick = clearInput();
-    hintIcon.onclick = hint();
-    nextIcon.onclick = click();
-    enableBackgroundMusic.onclick = enableBackgroundMusicFunction();
-    enableSoundEffects.onclick = enableSoundEffectsFunction();*/
-    input.disabled = false;
+        headbox.style.filter = "none";
+        box.style.filter = "none";
+        caption.style.filter = "none";
+        answer.style.filter = "none";
+        alertBox.style.visibility = "hidden";
+        optionBox.style.filter = "none";
+        
+        
+        hintBox.style.visibility = "hidden";
+        
+        messsage.style = "margin-top:30px";
+        loa.addEventListener("click", loaFunction);
+        refreshIcon.addEventListener("click", clearInput);
+        nextIcon.addEventListener("click", nextQuestion);
+        hintIcon.addEventListener("click", hint);
+        
+        confirm.style.visibility = "visible";
+        enableBackgroundMusic.addEventListener("click", enableBackgroundMusicFunction);
+        enableSoundEffects.addEventListener("click", enableSoundEffectsFunction);
+        input.disabled = false;
 
     }
    
@@ -290,7 +311,7 @@ function hint(){
 }
 function nextQuestion(){
     var answer = document.getElementById("answer");
-    var cap = document.getElementsByClassName("caption");
+    var caption = document.getElementById("caption");
    
     var messsage = document.getElementById("message");
     var next = document.getElementById("next");
@@ -302,7 +323,7 @@ function nextQuestion(){
     var enableBackgroundMusic = document.getElementById("enableBackgroundMusic");
     var enableSoundEffects = document.getElementById("enableSoundEffects");
     var loa = document.getElementById("loa");
-    var xacNhan = document.getElementById("xacNhan");
+    var confirm = document.getElementById("confirm");
     var input = document.getElementById("input");
     var refreshIcon = document.getElementById("refreshIcon");
     var hintIcon = document.getElementById("hintIcon");
@@ -317,19 +338,19 @@ function nextQuestion(){
     denyBox.style.visibility = "visible";
     hintBox.innerHTML = "Đồng ý";
     hintBox.style = "left: 70px; width: 120px; top:120px;"
-    
-    
-
-
     caption.style.filter = "blur(5px)";
     answer.style.filter = "blur(5px)";
     alertBox.style.visibility = "visible";
     next.style.visibility = "hidden";
     hintBox.style.visibility = "visible";
     hintBox.innerHTML = "Đồng ý";
+    confirm.style.visibility = "hidden";
     loa.removeEventListener("click",loaFunction);
     refreshIcon.removeEventListener("click",clearInput);
-   // hintIcon.removeEventListener("click",hint);
+    hintIcon.removeEventListener("click",hint);
+    nextIcon.removeEventListener("click",nextQuestion);
+    enableBackgroundMusic.removeEventListener("click", enableBackgroundMusicFunction);
+    enableSoundEffects.removeEventListener("click", enableSoundEffectsFunction);
 
     if(numOfHint >= 2){
         messsage.innerHTML = "Bỏ qua câu hỏi cần 2 sự trợ giúp, đồng ý chứ?"
@@ -348,21 +369,20 @@ function nextQuestion(){
             numOfHint = numOfHint - 2;
             numberOfHintLeft.innerHTML = numOfHint;
             denyBox.style.visibility = "hidden";
+            confirm.style.visibility = "visible";
             
-            //next.style.visibility = "visible";
+            
             hintBox.style.visibility = "hidden";
             
             messsage.style = "margin-top:30px";
             loa.addEventListener("click", loaFunction);
             refreshIcon.addEventListener("click",clearInput);
-            //hintIcon.addEventListener("click", hint);
+            hintIcon.addEventListener("click", hint);
+            nextIcon.addEventListener("click", nextQuestion);
+            enableBackgroundMusic.addEventListener("click", enableBackgroundMusicFunction);
+            enableSoundEffects.addEventListener("click", enableSoundEffectsFunction);
             
-            /*xacNhan.onclick = check_result(numOfApples[lesson]);
-            refreshIcon.onclick = clearInput();
-            hintIcon.onclick = hint();
-            nextIcon.onclick = click();
-            enableBackgroundMusic.onclick = enableBackgroundMusicFunction();
-            enableSoundEffects.onclick = enableSoundEffectsFunction();*/
+            
             input.disabled = false;
             if(lesson < numOfLesson - 1){
                 setTimeout(function(){
@@ -409,10 +429,15 @@ function nextQuestion(){
             denyBox.style.visibility = "hidden";
             //next.style.visibility = "visible";
             hintBox.style.visibility = "hidden";
+            confirm.style.visibility = "visible";
             
             messsage.style = "margin-top:30px";
             loa.addEventListener("click", loaFunction);
             refreshIcon.addEventListener("click",clearInput);
+            hintIcon.addEventListener("click", hint);
+            nextIcon.addEventListener("click", nextQuestion);
+            enableBackgroundMusic.addEventListener("click", enableBackgroundMusicFunction);
+            enableSoundEffects.addEventListener("click", enableSoundEffectsFunction);
             
             input.disabled = false;
         }
@@ -433,10 +458,15 @@ function nextQuestion(){
             optionBox.style.filter = "none";
             //next.style.visibility = "visible";
             hintBox.style.visibility = "hidden";
+            confirm.style.visibility = "visible";
             
             messsage.style = "margin-top:30px";
             loa.addEventListener("click", loaFunction);
             refreshIcon.addEventListener("click",clearInput);
+            hintIcon.addEventListener("click", hint);
+            nextIcon.addEventListener("click", nextQuestion);
+            enableBackgroundMusic.addEventListener("click", enableBackgroundMusicFunction);
+            enableSoundEffects.addEventListener("click", enableSoundEffectsFunction);
             
             input.disabled = false;
             

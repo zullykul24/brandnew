@@ -71,6 +71,15 @@ body {
     visibility: hidden;
     
 }
+#celeb {
+    height: 600px;
+    width: 1000px;
+    position: absolute;
+    top: 0px;
+    opacity: 0.5;
+    visibility: hidden;
+    z-index: 2;
+}
 #bulb {
     float: left;
     margin-left: 90px;
@@ -92,7 +101,7 @@ body {
 #contentncap {
     padding-top: 10px;
     margin-top: 1px;
-    visibility: visible;
+    visibility: hidden;
     
 }
 
@@ -116,6 +125,7 @@ body {
     margin-top: 10px;
     cursor: pointer;
     float: left;
+    z-index: 1;
 }
 #cauHoi {
     font-family: Arial, Helvetica, sans-serif;
@@ -324,7 +334,7 @@ height: 60px;
     font-size: 30px;
 
 }
-#xacNhan {
+#confirm {
     height: 50px;
     width: 100px;
     float: left;
