@@ -7,7 +7,7 @@
 	<link href="style.css" rel="stylesheet">
 	<script type="text/javascript" src="config.js"></script>
 	<script>
-		var obj = JSON.parse(data1);
+		var obj = JSON.parse(data2);
 	</script>
 	<script type="text/javascript" src="game.js"></script> 
 	
@@ -30,8 +30,8 @@
     <div id="contentncap">
 		<img id="celeb" src="assets/celeb2.gif">
         <div class="caption" id="caption">
-			<div id="loa" ></div><!--onclick="loaFunction()"-->
-			<div id="cauHoi">Có bao nhiêu quả táo ở trong hộp?</div>
+			<div id="speaker" ></div><!--loa-->
+			<div id="questionHowMany">Có bao nhiêu quả táo ở trong hộp?</div>
 		</div>
         <div class="content"> 
 			<div id="boxAndOptionbox">                                      
@@ -75,12 +75,13 @@
 
 			</div> 
 			<div id="optionBox">
-				<div id="refreshIcon" title="Làm mới đáp án" ></div><!--onclick="clearInput()"-->
-				<div id="hintIcon" title="Gợi ý" ></div><!---->
+				<div id="refreshIcon" title="Làm mới đáp án" ></div>
+				<div id="hintIcon" title="Gợi ý" ></div>
 				<div id="nextIcon" title="Bỏ qua" ></div>
 			</div>
 			</div> 
 			<div id="wrongCross"></div>
+			<div id="xCross" ></div>
 	
 			<div id="alertBox">
 				<div id="message"></div>
@@ -92,17 +93,20 @@
 			
 		</div>
 		<div id="answer">
-			<div id="cauTraLoi">Số quả táo là:</div>
-			<div id="dapAn">
+			<div id="numberOfFruitIs">Số quả táo là:</div><!--cauTraLoi-->
+			<div id="theAnswerIs"><!--dapAn-->
 				<input id = "input" type="text" value="" maxlength="2"  autofocus>
 			</div>
-			<div id="confirm" onclick="checkResult(numOfApples[lesson])">Xác nhận</div><!--onclick="checkResult(numOfApples[lesson])"-->
+			<div id="confirm" onclick="checkResult(numOfFruits[lesson])">Xác nhận</div><!--onclick="checkResult(numOfApples[lesson])"-->
 		</div>
 		<div id="nameOfPicture"></div>
     </div>
 	</div> 
-	<audio id="coBaoNhieu">
+	<audio id="howManyApple"><!--coBaoNhieu-->
         <source src="assets/cobaonhieu.mp3" type="audio/ogg">
+	</audio>
+	<audio id="howManyBanana">
+		<source src="assets/howManyBananas.mp3" type="audio/ogg">
 	</audio>
 	<audio id="wrong">
 		<source src="assets/wrong.mp3" type="audio/ogg">

@@ -1,18 +1,14 @@
 
-
-
-
-//var data = '{ "numOfLesson": 3,"maxApples": 30}';
-//var obj = JSON.parse(data);
-
-
 var lesson = 0; 
 const numOfLesson = obj.numOfLesson;
-const numOfApples = [];
-const maxApples = obj.maxApples;
+const numOfFruits = [];
+const maxFruits = obj.maxFruits;//maxFruits
+const typeOfFruit = obj.typeOfFruit;
+const imageOfFruit = obj.imageOfFruit;
+const fruitInEnglish = obj.fruitInEnglish;
 var numOfHint = Math.round(numOfLesson / 2);
 var isHint = false;
-var backgroundMusicOn = false;
+var backgroundMusicOn = true;
 var soundEffectsOn = true;
 
 
@@ -34,7 +30,7 @@ var box = document.getElementById("box");
 var nameOfPicture = document.getElementById("nameOfPicture");  
 var alertBox = document.getElementById("alertBox");  
 
-var apples = document.getElementsByClassName("plot");
+var fruits = document.getElementsByClassName("plot");//fruits
 var completedSound = document.getElementById("completed");
 var celebGif = document.getElementById("celeb");
 
@@ -97,11 +93,11 @@ var celebGif = document.getElementById("celeb");
         setTimeout(function(){
             mainBox.style.filter = "none";
             input.value = "";
-            for(var i = 0;i < numOfApples[lesson]; i++){
-            apples[i].style = "background-image: url('assets/apple.png');";
+            for(var i = 0;i < numOfFruits[lesson]; i++){
+                fruits[i].style = "background-image: url('"+ imageOfFruit +"');";
             }
-            for(var i= numOfApples[lesson]; i < maxApples;i++){
-                apples[i].style = "background-image: none;";
+            for(var i= numOfFruits[lesson]; i < maxFruits;i++){
+                fruits[i].style = "background-image: none;";
             }
             progress.innerHTML = "Tiến trình: " + (lesson + 1) + "/" + numOfLesson;
         },3000) 
@@ -125,7 +121,7 @@ var celebGif = document.getElementById("celeb");
 
 function restart()
 { 
-    for(var i = 0;i < numOfLesson;i++){numOfApples[i]= Math.floor((Math.random() * maxApples) + 1);}// generate array of random integers from 1 to 30
+    for(var i = 0;i < numOfLesson;i++){numOfFruits[i]= Math.floor((Math.random() * maxFruits) + 1);}// generate array of random integers from 1 to 30
     lesson = 0; 
     if(backgroundMusicOn == true)playAudio("backgroundMusic");
     var optionBox = document.getElementById("optionBox");
@@ -135,13 +131,16 @@ function restart()
 
     var alertBox = document.getElementById("alertBox");  
     
-    var apples = document.getElementsByClassName("plot");
+    var fruits = document.getElementsByClassName("plot");
     
     
     var bulbHint = document.getElementById("numberOfHint");
     var progress = document.getElementById("progress");
 
-    document.getElementById("loa").addEventListener("click", loaFunction);
+    document.getElementById("questionHowMany").innerHTML = "Có bao nhiêu quả " + typeOfFruit + " ở trong hộp?";
+    document.getElementById("numberOfFruitIs").innerHTML = "Số quả " + typeOfFruit + " là:";
+
+    document.getElementById("speaker").addEventListener("click", speakerFunction);
     //document.getElementById("confirm").addEventListener("click", checkResult);
     
     document.getElementById("refreshIcon").addEventListener("click",clearInput);
@@ -154,8 +153,8 @@ function restart()
     numberOfHintLeft.innerHTML = numOfHint;
     optionBox.style.visibility = "visible";
 
-    for(var i = 0;i < numOfApples[lesson]; i++){
-        apples[i].style = "background-image: url('assets/apple.png');";
+    for(var i = 0;i < numOfFruits[lesson]; i++){
+        fruits[i].style = "background-image: url('"+ imageOfFruit +"');";
     }  
     alertBox.style.visibility = "hidden";
     caption.style = "opacity : 1;";
@@ -208,14 +207,14 @@ function enableSoundEffectsFunction(){
         enableSoundEffects.innerHTML = "Âm thanh: BẬT"
     }
 }
-function loaFunction(){
-    var coBaoNhieu = document.getElementById("coBaoNhieu");
+function speakerFunction(){
+    var howManyFruit = document.getElementById("howMany"+ fruitInEnglish);
     if(soundEffectsOn == true){
-        playAudio("coBaoNhieu");
-        coBaoNhieu.volume = 1;
+        playAudio("howMany"+ fruitInEnglish);
+        howManyFruit.volume = 1;
     }
     else{
-        coBaoNhieu.volume = 0;
+        howManyFruit.volume = 0;
     }
 }
 function playAudio(play) {
@@ -242,12 +241,14 @@ function hint(){
     var hintBox = document.getElementById("hintBox");
     var enableBackgroundMusic = document.getElementById("enableBackgroundMusic");
     var enableSoundEffects = document.getElementById("enableSoundEffects");
-    var loa = document.getElementById("loa");
+    var speaker = document.getElementById("speaker");
     var confirm = document.getElementById("confirm");
     var input = document.getElementById("input");
     var refreshIcon = document.getElementById("refreshIcon");
     var hintIcon = document.getElementById("hintIcon");
     var nextIcon = document.getElementById("nextIcon");
+    var xCross = document.getElementById("xCross");
+    //xCross.style.visibility = "visible";
    
     headbox.style.filter = "blur(5px)";
     box.style.filter = "blur(5px)";
@@ -261,7 +262,7 @@ function hint(){
     next.style.visibility = "hidden";
     hintBox.style.visibility = "visible";
     hintBox.innerHTML = "Được rồi";
-    loa.removeEventListener("click",loaFunction);
+    speaker.removeEventListener("click",speakerFunction);
     refreshIcon.removeEventListener("click",clearInput);
     hintIcon.removeEventListener("click",hint);
     nextIcon.removeEventListener("click",nextQuestion);
@@ -273,7 +274,7 @@ function hint(){
     input.disabled = true;
     
     if(numOfHint > 0){
-        messsage.innerHTML = "Mỗi hàng có 10 quả táo, số quả táo ở đây là: "+ numOfApples[lesson];
+        messsage.innerHTML = "Mỗi hàng có 10 quả "+ typeOfFruit +", số quả "+typeOfFruit+" ở đây là: "+ numOfFruits[lesson];
         messsage.style = "font-size:20px; line-height:20px; margin-top:15px";
         numOfHint = numOfHint - 1;
         numberOfHintLeft.innerHTML = numOfHint;
@@ -295,7 +296,7 @@ function hint(){
         hintBox.style.visibility = "hidden";
         
         messsage.style = "margin-top:30px";
-        loa.addEventListener("click", loaFunction);
+        speaker.addEventListener("click", speakerFunction);
         refreshIcon.addEventListener("click", clearInput);
         nextIcon.addEventListener("click", nextQuestion);
         hintIcon.addEventListener("click", hint);
@@ -322,7 +323,7 @@ function nextQuestion(){
     var hintBox = document.getElementById("hintBox");
     var enableBackgroundMusic = document.getElementById("enableBackgroundMusic");
     var enableSoundEffects = document.getElementById("enableSoundEffects");
-    var loa = document.getElementById("loa");
+    var speaker = document.getElementById("speaker");
     var confirm = document.getElementById("confirm");
     var input = document.getElementById("input");
     var refreshIcon = document.getElementById("refreshIcon");
@@ -330,12 +331,14 @@ function nextQuestion(){
     var nextIcon = document.getElementById("nextIcon");
     var denyBox = document.getElementById("denyBox");
     var progress = document.getElementById("progress");
-    var apples = document.getElementsByClassName("plot");
+    var fruits = document.getElementsByClassName("plot");
+    var xCross = document.getElementById("xCross");
    
     headbox.style.filter = "blur(5px)";
     box.style.filter = "blur(5px)";
     optionBox.style.filter = "blur(5px)";
     denyBox.style.visibility = "visible";
+    //xCross.style.visibility = "visible";
     hintBox.innerHTML = "Đồng ý";
     hintBox.style = "left: 70px; width: 120px; top:120px;"
     caption.style.filter = "blur(5px)";
@@ -345,7 +348,7 @@ function nextQuestion(){
     hintBox.style.visibility = "visible";
     hintBox.innerHTML = "Đồng ý";
     confirm.style.visibility = "hidden";
-    loa.removeEventListener("click",loaFunction);
+    speaker.removeEventListener("click",speakerFunction);
     refreshIcon.removeEventListener("click",clearInput);
     hintIcon.removeEventListener("click",hint);
     nextIcon.removeEventListener("click",nextQuestion);
@@ -369,13 +372,14 @@ function nextQuestion(){
             numOfHint = numOfHint - 2;
             numberOfHintLeft.innerHTML = numOfHint;
             denyBox.style.visibility = "hidden";
+            //xCross.style.visibility = "hidden";
             confirm.style.visibility = "visible";
             
             
             hintBox.style.visibility = "hidden";
             
             messsage.style = "margin-top:30px";
-            loa.addEventListener("click", loaFunction);
+            speaker.addEventListener("click", speakerFunction);
             refreshIcon.addEventListener("click",clearInput);
             hintIcon.addEventListener("click", hint);
             nextIcon.addEventListener("click", nextQuestion);
@@ -389,11 +393,11 @@ function nextQuestion(){
                     lesson = lesson + 1;
                     
                     input.value = "";
-                    for(var i = 0;i < numOfApples[lesson]; i++){
-                    apples[i].style = "background-image: url('assets/apple.png');";
+                    for(var i = 0;i < numOfFruits[lesson]; i++){
+                        fruits[i].style = "background-image: url('"+ imageOfFruit +"');";
                     }
-                    for(var i= numOfApples[lesson]; i < maxApples;i++){
-                        apples[i].style = "background-image: none;";
+                    for(var i= numOfFruits[lesson]; i < maxFruits;i++){
+                        fruits[i].style = "background-image: none;";
                     }
                     progress.innerHTML = "Tiến trình: " + (lesson + 1) + "/" + numOfLesson;
                 },100) 
@@ -428,11 +432,12 @@ function nextQuestion(){
             optionBox.style.filter = "none";
             denyBox.style.visibility = "hidden";
             //next.style.visibility = "visible";
+           // xCross.style.visibility = "hidden";
             hintBox.style.visibility = "hidden";
             confirm.style.visibility = "visible";
             
             messsage.style = "margin-top:30px";
-            loa.addEventListener("click", loaFunction);
+            speaker.addEventListener("click", speakerFunction);
             refreshIcon.addEventListener("click",clearInput);
             hintIcon.addEventListener("click", hint);
             nextIcon.addEventListener("click", nextQuestion);
@@ -446,6 +451,7 @@ function nextQuestion(){
         messsage.style = "font-size:20px; line-height:20px; margin-top:15px";
         messsage.innerHTML = "Bạn không còn đủ sự trợ giúp";
         denyBox.style.visibility = "hidden";
+     //xCross.style.visibility = "hidden";
         hintBox.innerHTML = "Được rồi";
         hintBox.style = "left: 140px; width: 120px; top:120px; visibility:visible;"
         hintBox.onclick = function(){
@@ -461,7 +467,7 @@ function nextQuestion(){
             confirm.style.visibility = "visible";
             
             messsage.style = "margin-top:30px";
-            loa.addEventListener("click", loaFunction);
+            speaker.addEventListener("click", speakerFunction);
             refreshIcon.addEventListener("click",clearInput);
             hintIcon.addEventListener("click", hint);
             nextIcon.addEventListener("click", nextQuestion);

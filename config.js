@@ -1,7 +1,7 @@
 
 
-var data1 = '{ "numOfLesson": 3,"maxApples": 30}';
-var data2 = '{ "numOfLesson": 4,"maxApples": 25}';
-var data3 = '{ "numOfLesson": 5,"maxApples": 20}';
-var data4 = '{ "numOfLesson": 6,"maxApples": 15}';
-var data5 = '{ "numOfLesson": 7,"maxApples": 10}';
+var data1 = '{ "numOfLesson": 5,"maxFruits": 30, "typeOfFruit": "táo", "imageOfFruit": "assets/apple.png", "fruitInEnglish": "Apple"}';
+var data2 = '{ "numOfLesson": 4,"maxFruits": 25, "typeOfFruit": "chuối", "imageOfFruit": "assets/banana.png", "fruitInEnglish": "Banana"}';
+var data3 = '{ "numOfLesson": 5,"maxFruits": 20, "typeOfFruit": "táo", "imageOfFruit": "assets/apple.png", "fruitInEnglish": "Apple"}';
+var data4 = '{ "numOfLesson": 6,"maxFruits": 15, "typeOfFruit": "táo", "imageOfFruit": "assets/apple.png", "fruitInEnglish": "Apple"}';
+var data5 = '{ "numOfLesson": 7,"maxFruits": 10, "typeOfFruit": "táo", "imageOfFruit": "assets/apple.png", "fruitInEnglish": "Apple"}';
