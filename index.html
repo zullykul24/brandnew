@@ -7,7 +7,7 @@
 	<link href="style.css" rel="stylesheet">
 	<script type="text/javascript" src="config.js"></script>
 	<script>
-		var obj = JSON.parse(data2);
+		var obj = JSON.parse(data1);
 	</script>
 	<script type="text/javascript" src="game.js"></script> 
 	
@@ -15,13 +15,13 @@
 </head>
 <body onload ="startWithButton()">
     <div id="mainbox">
-    <img id="startButton" src="assets/startButton.png" width="250px" height="250px" style="visibility: visible;"  onclick="restart();"><!--Click start button to start the game-->
+    <img id="startButton" src="assets/startButton.png" width="250px" height="250px" style="visibility: visible;"  onclick="restart();">
     <div id="headbox">
         <div id="progress"> 
             Tiến trình: 1/5
 		</div>
-		<div id="enableBackgroundMusic" >Nhạc nền: BẬT</div><!--onclick="enableBackgroundMusicFunction()"-->
-		<div id="enableSoundEffects" >Âm thanh: BẬT</div><!--onclick="enableSoundEffectsFunction()"-->
+		<div id="enableBackgroundMusic" ></div>
+		<div id="enableSoundEffects" ></div>
 		<div id="numberOfHint">
 			<img src="assets/bulb.png" id="bulb">
 			<div id="numberOfHintLeft" ></div>
@@ -74,13 +74,10 @@
 				</div> 
 
 			</div> 
-			<div id="optionBox">
-				<div id="refreshIcon" title="Làm mới đáp án" ></div>
-				<div id="hintIcon" title="Gợi ý" ></div>
-				<div id="nextIcon" title="Bỏ qua" ></div>
-			</div>
+			
 			</div> 
-			<div id="wrongCross"></div>
+            <div id="wrongCross"></div>
+            <div id="vTrue"></div>
 			<div id="xCross" ></div>
 	
 			<div id="alertBox">
@@ -93,16 +90,21 @@
 			
 		</div>
 		<div id="answer">
-			<div id="numberOfFruitIs">Số quả táo là:</div><!--cauTraLoi-->
-			<div id="theAnswerIs"><!--dapAn-->
-				<input id = "input" type="text" value="" maxlength="2"  autofocus>
+			<div id="numberOfFruitIs">Số quả táo là:</div>
+			<div id="theAnswerIs">
+				<input id = "input" type="text" value="" maxlength="10" placeholder=""  autofocus>
 			</div>
-			<div id="confirm" onclick="checkResult(numOfFruits[lesson])">Xác nhận</div><!--onclick="checkResult(numOfApples[lesson])"-->
+			<div id="confirm" onclick="checkResult(numOfFruits[lesson])">Xác nhận</div>
 		</div>
-		<div id="nameOfPicture"></div>
+        <div id="nameOfPicture"></div>
+        <div id="optionBox">
+            <div id="refreshIcon" title="Làm mới đáp án" ></div>
+            <div id="hintIcon" title="Gợi ý" ></div>
+            <div id="nextIcon" title="Bỏ qua" ></div>
+        </div>
     </div>
 	</div> 
-	<audio id="howManyApple"><!--coBaoNhieu-->
+	<audio id="howManyApple">
         <source src="assets/cobaonhieu.mp3" type="audio/ogg">
 	</audio>
 	<audio id="howManyBanana">

@@ -33,6 +33,7 @@ var alertBox = document.getElementById("alertBox");
 var fruits = document.getElementsByClassName("plot");//fruits
 var completedSound = document.getElementById("completed");
 var celebGif = document.getElementById("celeb");
+var vTrue = document.getElementById("vTrue");
 
 
     
@@ -40,6 +41,16 @@ var celebGif = document.getElementById("celeb");
         if(soundEffectsOn == true){playAudio("right");}
         setTimeout(function(){  
             nameOfPicture.style.visibility = "visible";
+            vTrue.style.visibility = "visible";
+            vTrue.style.backgroundSize = "150px";
+            setTimeout(function(){
+                vTrue.style.visibility = "visible";
+            },500)
+            setTimeout(function(){
+                vTrue.style.visibility = "hidden";
+                vTrue.style = "background-size : 0px;"
+    
+            },1000)  
             if(x < 10)nameOfPicture.innerHTML = x + " quả";
             else if(x%10 == 0)nameOfPicture.innerHTML = x/10 + " chục quả";
             else nameOfPicture.innerHTML = (x - x%10)/10 + " chục và " + x%10 + " quả"; 
@@ -81,15 +92,26 @@ var celebGif = document.getElementById("celeb");
         if(soundEffectsOn == true){playAudio("right");}
         setTimeout(function(){  
             nameOfPicture.style.visibility = "visible";
+            vTrue.style.visibility = "visible";
+            
             if(x < 10)nameOfPicture.innerHTML = x + " quả";
             else if(x%10 == 0)nameOfPicture.innerHTML = x/10 + " chục quả";
             else nameOfPicture.innerHTML = (x - x%10)/10 + " chục và " + x%10 + " quả"; 
            
         },500)    
         setTimeout(function(){
+            vTrue.style.backgroundSize = "150px";
+            vTrue.style.visibility = "visible";
+        },500)
+        setTimeout(function(){
+            vTrue.style.visibility = "hidden";
+            vTrue.style = "background-size : 1px;"
+
+        },2000)  
+        setTimeout(function(){
             mainBox.style.filter =   "blur(5px)";
             nameOfPicture.style.visibility = "hidden";
-        },1500)
+        },2100)
         setTimeout(function(){
             mainBox.style.filter = "none";
             input.value = "";
@@ -100,7 +122,7 @@ var celebGif = document.getElementById("celeb");
                 fruits[i].style = "background-image: none;";
             }
             progress.innerHTML = "Tiến trình: " + (lesson + 1) + "/" + numOfLesson;
-        },3000) 
+        },2500) 
         
     }
 
@@ -174,6 +196,7 @@ function startWithButton(){
     contentncap.style.visibility = "hidden";
     enableBackgroundMusic.addEventListener("click", enableBackgroundMusicFunction);
     enableSoundEffects.addEventListener("click", enableSoundEffectsFunction);
+    enableBackgroundMusic.style = "background-color: aquamarine";
 
 
 }
@@ -185,13 +208,13 @@ function enableBackgroundMusicFunction(){
         backgroundMusic.pause();
         backgroundMusicOn = false;
         enableBackgroundMusic.style = "background-color: bisque;"
-        enableBackgroundMusic.innerHTML = "Nhạc nền: TẮT"
+        
     }
     else{
         backgroundMusic.play();
         backgroundMusicOn = true;
         enableBackgroundMusic.style = "background-color: aquamarine;"
-        enableBackgroundMusic.innerHTML = "Nhạc nền: BẬT"
+        
     }
 }
 function enableSoundEffectsFunction(){
@@ -199,12 +222,12 @@ function enableSoundEffectsFunction(){
     if(soundEffectsOn == true){
         soundEffectsOn = false;
         enableSoundEffects.style = "background-color: bisque;"
-        enableSoundEffects.innerHTML = "Âm thanh: TẮT"
+       
     }
     else {
         soundEffectsOn = true;
         enableSoundEffects.style = "background-color: aquamarine;"
-        enableSoundEffects.innerHTML = "Âm thanh: BẬT"
+       
     }
 }
 function speakerFunction(){

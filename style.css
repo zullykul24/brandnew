@@ -1,21 +1,24 @@
 body {
     background: url("assets/newbackground.png") center;
+    
    
     font-family: sans-serif;
     user-select: none;
-    
-   
+  
    
 }
 #mainbox {
     z-index: 0;
     position: relative;
-    margin: 15px auto 20px;
-    width: 1000px;
-    min-height: 600px;
+   top: 0;
+   left: 400px;
+    width: 500px;
+    height: 700px;
+    
     border-radius: 15px;
     background: #ffffff;
     user-select: none;
+    box-shadow: 10px 10px 10px 10px grey;
     
 }
 #headbox {
@@ -38,42 +41,55 @@ body {
 }
 
 #enableBackgroundMusic {
-    margin-left: 30px;
+    position: absolute;
+    left: 230px;
     float: left;
-    width: 200px;
+    width: 50px;
     height: 50px;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     background-color: aquamarine;
+    background: url("assets/music.png") center no-repeat;
+    background-size: 40px;
     cursor: pointer;
     border-radius: 10px;
     font-size: 15px;
+    box-shadow: 1px 0px 1px 0px grey;
 }
 #enableSoundEffects {
-    margin-left: 5px;
+    left: 300px;
     float: left;
-    width: 200px;
+    width: 50px;
     height: 50px;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial;
+    background: url("assets/sound.png") center no-repeat;
+    background-size: 50px;
     background-color: aquamarine;
     cursor: pointer;
     border-radius: 10px;
     font-size: 15px;
+    position: absolute;
+    box-shadow: 1px 0px 1px 0px grey;
 }
 #numberOfHint {
+    position: absolute;
+    left: 380px;
     float: left;
-    width: 240px;
+    width: 100px;
     height: 50px;
     line-height: 50px;
     text-align: center;
     font-size: 30px;
     visibility: hidden;
+    border-radius: 30px;
+    background-color: #ebdcdc;
+    box-shadow: 1px 0px 1px 0px grey;
     
 }
 #celeb {
-    height: 600px;
-    width: 1000px;
+    height: 700px;
+    width: 500px;
     position: absolute;
     top: 0px;
     opacity: 0.5;
@@ -83,10 +99,10 @@ body {
 #bulb {
     position: absolute;
     
-    left: 790px;
-    width: 40px;
-    height: 40px;
-    top: 5px;
+    left: 10px;
+    width: 35px;
+    height: 35px;
+    top: 7px;
 }
 #numberOfHintLeft {
     position: absolute;
@@ -94,15 +110,18 @@ body {
     height: 50px;
     line-height: 50px;
     text-align: center;
-    font-size: 30px;
-    left: 830px;
+    font-size: 25px;
+    left: 40px;
 
 }
 
 
 
 #contentncap {
-    padding-top: 10px;
+    position: absolute;
+    width: 500px;
+    height: 649px;
+    
     margin-top: 1px;
     visibility: hidden;
     
@@ -110,53 +129,59 @@ body {
 
 
 #caption {
-    width: 960px;
-    position: relative;
+    width: 500px;
+    position: absolute;
     height: 70px;
+    top: 52px;
     text-align: center;
     line-height: 69px;
     font-size: 50px;
     transition: opacity 1s;
 }
 #speaker {
+    position: absolute;
     background-image: url('assets/loadai.png');
     background-repeat: no-repeat; 
-    width: 40px;
-    height: 40px;
-    background-size: 40px;
-    margin-left: 200px;
-    margin-top: 10px;
+    width: 30px;
+    height: 30px;
+    background-size: 30px;
+    
+    left: 30px;
+    top: 20px;
     cursor: pointer;
     float: left;
     z-index: 1;
 }
 #questionHowMany {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
-    position: relative;
-    margin-left: 30px;
+    font-family: Arial;
+    font-size: 25px;
+    position: absolute;
+    left:  70px;
     float: left;
 }
 .content {
-    width: 960px;
+    position: absolute;
+    top:170px ;
+    width: 500px;
     height: 300px;
 
     background-color: #ffffff;
-    margin-left: 0px;
-    margin-top: 0px;
+    
 }
 #box {
-    width: 600px;
+    position: absolute;
+    width: 450px;
     float: left;
-    height: 300px;
+    height: 240px;
     line-height: 100px;
     font-size: 40px;
+    left: 25px;
     
     
     background-color: rgb(231, 177, 94);
-    margin-left: 150px;
-    border-radius: 20px;
-    z-index: -1;
+    
+    border-radius: 20px;box-shadow: 5px 5px 1px 0px grey;
+    
 
 }
 
@@ -166,13 +191,14 @@ body {
    
     
     background-color: #ffffff;
-    margin-left: 250px;
+    left: 50px;
     border-radius: 20px;
-    top: 50px;
+    top: 15px;
   
     visibility: hidden;
-    position: relative;
+    position: absolute;
     z-index: 2;
+    border: 1px solid black;
     
    
   
@@ -205,14 +231,14 @@ body {
   
 }
 #hintBox {
-    top: 100px;
+    top: 110px;
     left: 140px;
    position: absolute;
     width: 120px;
     height: 50px;
     background-color: aquamarine;
     visibility: hidden;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial;
     text-align: center;
     line-height: 50px;
     cursor: pointer;
@@ -230,6 +256,7 @@ body {
     cursor: pointer;
     visibility: hidden;
 }
+
 #denyBox {
     width: 120px;
     height: 50px;
@@ -252,104 +279,136 @@ body {
     background-image: url('assets/wrongCross.png') ;
     background-position: center;
     background-repeat: no-repeat;
-    margin-left: 350px;
-    margin-top: 60px;
+    left: 150px;
+    top: 30px;
     visibility: hidden;
    
     background-size: 0px;
-    -webkit-transition: background-size 4s;
+    -webkit-transition: background-size 3s;
     z-index: 2 ;
+}
+#vTrue {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    background-image: url('assets/vtrue.png') ;
+    background-position: center;
+    background-repeat: no-repeat;
+    left: 160px;
+    top: 20px;
+    visibility: hidden;
+   
+    background-size: 0px;
+    -webkit-transition: background-size 3s;
+    z-index: 3 ;
 }
     
 .row {
-width: 600px;
-height: 60px;
+width: 450px;
+height: 50px;
 }
 #row2 {
     margin-top: 50px;
 }
 #row3 {
-    margin-top: 50px;
+    margin-top: 45px;
 }
 .plot {
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
     
-    background-size: 60px;
+    background-size: 45px;
     float: left;
 }
 #optionBox {
-    width: 60px;
-    height: 300px;
+    width: 300px;
+    height: 60px;
     border: black 1px solid;
     border-radius: 10px;
-    float: left;
-    position: relative;
+    top: 560px;
+    
+    position: absolute;
     z-index: 1;
-    margin-left: 60px;
+    left: 100px;
     visibility: hidden;
+    box-shadow: 5px 5px 1px 0px grey;
 }
 #refreshIcon {
+    position: absolute;
     width: 60px;
     height: 60px;
     background-image: url("assets/refresh.png") ;
     background-size: 40px;
     background-repeat: no-repeat;
     cursor: pointer;
-    margin-left: 10px;
-    margin-top: 30px;
+    left: 10px;
+    top: 10px;
     
 }
 #hintIcon {
+    position: absolute;
     width: 60px;
     height: 60px;
     background-image: url("assets/bulb.png");
     background-size: 40px;
     background-repeat: no-repeat;
     cursor: pointer;
-    margin-left: 10px;
-    margin-top: 30px;
+    left: 120px;
+    top: 5px;
 }
 #nextIcon {
+    position: absolute;
     width: 60px;
     height: 60px;
     background-image: url("assets/nextIcon.png");
     background-size: 60px;
     background-repeat: no-repeat;
     cursor: pointer;
-    margin-top: 30px;
+    top: 1px;
+    right: 7px;
 }
 
 
 #answer {
-    width: 960px;
+    position: absolute;
+    top: 450px;
+    width: 500px;
     height: 70px;
     line-height: 70px;
     font-size: 30px;
     text-align: center;
 }
 #numberOfFruitIs {
-    margin-left: 300px;
+    height: 50px;
+    position: absolute;
+    left: 50px;
     float: left;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
+    font-family: Arial;
+    font-size: 25px;
+    line-height: 50px;
 }
 #theAnswerIs {
-    float: left;
-    margin-left: 5px;
+    position: absolute;
+    
+    left: 200px;
     height: 70px;
     width: 70px;
 
 }
 #input {
+    position: absolute;
+    left: 30px;
     height: 40px;
-    width: 40px;
+    width: 50px;
     line-height: 40px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 30px;
+    
+   
 
 }
 #confirm {
+    position: absolute;
     height: 50px;
     width: 100px;
     float: left;
@@ -358,23 +417,27 @@ height: 60px;
     line-height: 50px;
     font-size: 20px;
     background-color: aquamarine;
-    border-radius: 5px;
-    margin-left: 30px;
-    margin-top: 10px;
+    border-radius: 10px;
+    left: 350px;
+    top: 0px;
+    border: black 1px solid;
     cursor: pointer;
+    box-shadow: 3px 3px 1px 0px grey;
 
 }
 #nameOfPicture {
-    float: left;
-    width: 600px;
-    height: 70px;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    line-height: 70px;
-    font-size: 30px;
-    margin-left: 150px;
+    position: absolute;
     
-    visibility: hidden;
+    width: 520px;
+    height: 50px;
+    font-family: Arial;
+    text-align: center;
+    line-height: 50px;
+    font-size: 30px;
+    left: 0px;
+    top: 500px;
+    
+    visibility: visible;
 }
 
 
@@ -382,8 +445,8 @@ height: 60px;
 
 #startButton{
     position: absolute;
-    top: 160px;
+    top: 180px;
     z-index: 3;
-    left: 355px;
+    left:120px;
     cursor: pointer;
 }
