@@ -1,8 +1,11 @@
 
+var obj = data2;
+
+
 var lesson = 0; 
 const numOfLesson = obj.numOfLesson;
 const numOfFruits = [];
-const maxFruits = obj.maxFruits;//maxFruits
+const maxFruits = obj.maxFruits;
 const typeOfFruit = obj.typeOfFruit;
 const imageOfFruit = obj.imageOfFruit;
 const fruitInEnglish = obj.fruitInEnglish;
@@ -231,9 +234,10 @@ function enableSoundEffectsFunction(){
     }
 }
 function speakerFunction(){
-    var howManyFruit = document.getElementById("howMany"+ fruitInEnglish);
+    var howManyFruit = document.getElementById(fruitInEnglish);
+    
     if(soundEffectsOn == true){
-        playAudio("howMany"+ fruitInEnglish);
+        playAudio("howMany" + fruitInEnglish);
         howManyFruit.volume = 1;
     }
     else{
