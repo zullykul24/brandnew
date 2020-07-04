@@ -48,8 +48,9 @@ body {
     height: 50px;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: aquamarine;
+    
     background: url("assets/music.png") center no-repeat;
+    background-color: aquamarine;
     background-size: 40px;
     cursor: pointer;
     border-radius: 10px;
@@ -145,6 +146,7 @@ body {
     width: 30px;
     height: 30px;
     background-size: 30px;
+    visibility: hidden;
     
     left: 30px;
     top: 20px;
@@ -318,6 +320,7 @@ height: 50px;
     height: 45px;
     
     background-size: 45px;
+    background-repeat: no-repeat;
     float: left;
 }
 #optionBox {

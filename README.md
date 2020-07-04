@@ -24,10 +24,10 @@ Thành phần màn hình chơi gồm có:
 ### Trợ giúp
 Lưu ý: chỉ sử dụng được nếu bạn còn đủ sự trợ giúp.
 #### Gợi ý
-Bấm vào nút gợi ý(biểu tượng bóng đèn phía dưới màn hình), hộp thoại gợi ý hiện ra và bạn mất 1 sự trợ giúp.
+Bấm vào nút gợi ý(biểu tượng bóng đèn phía dưới màn hình), hộp thoại gợi ý hiện ra và bạn mất 1 sự trợ giúp. Nhấn nút "Được rồi" để đóng hộp thoại.
  ![Screenshot](https://github.com/zullykul24/brandnew/blob/master/assets/forReadme/hintBox.png)
 #### Bỏ qua
-Bấm vào nút bỏ qua(biểu tượng mũi tên phía dưới màn hình), hộp thoại hiện ra. Khi đó bạn chọn Đồng ý thì màn hình sẽ chuyển sang câu tiếp theo hoặc trò chơi kết thúc nếu đó là câu cuối, bạn mất 2 sự trợ giúp cho việc này. Nếu chọn Từ chối, hộp thoại sẽ biến mất.
+Bấm vào nút bỏ qua(biểu tượng mũi tên phía dưới màn hình), hộp thoại hiện ra. Khi đó bạn chọn "Đồng ý" thì màn hình sẽ chuyển sang câu tiếp theo hoặc trò chơi kết thúc nếu đó là câu cuối, bạn mất 2 sự trợ giúp cho việc này. Nếu chọn "Từ" chối, hộp thoại sẽ biến mất.
  ![Screenshot](https://github.com/zullykul24/brandnew/blob/master/assets/forReadme/nextBox.png)
 ## III. Thay đổi dữ liệu
 Thêm/thay đổi dữ liệu trong file config.js như sau:

@@ -1,5 +1,5 @@
 
-var obj = data2;
+var obj = data1; /// change data here
 
 
 var lesson = 0; 
@@ -165,7 +165,7 @@ function restart()
     document.getElementById("questionHowMany").innerHTML = "Có bao nhiêu quả " + typeOfFruit + " ở trong hộp?";
     document.getElementById("numberOfFruitIs").innerHTML = "Số quả " + typeOfFruit + " là:";
 
-    document.getElementById("speaker").addEventListener("click", speakerFunction);
+    //document.getElementById("speaker").addEventListener("click", speakerFunction);
     //document.getElementById("confirm").addEventListener("click", checkResult);
     
     document.getElementById("refreshIcon").addEventListener("click",clearInput);
@@ -233,7 +233,7 @@ function enableSoundEffectsFunction(){
        
     }
 }
-function speakerFunction(){
+/*function speakerFunction(){
     var howManyFruit = document.getElementById(fruitInEnglish);
     
     if(soundEffectsOn == true){
@@ -243,7 +243,7 @@ function speakerFunction(){
     else{
         howManyFruit.volume = 0;
     }
-}
+}*/
 function playAudio(play) {
     document.getElementById(play).play();
 }
@@ -289,7 +289,7 @@ function hint(){
     next.style.visibility = "hidden";
     hintBox.style.visibility = "visible";
     hintBox.innerHTML = "Được rồi";
-    speaker.removeEventListener("click",speakerFunction);
+    //speaker.removeEventListener("click",speakerFunction);
     refreshIcon.removeEventListener("click",clearInput);
     hintIcon.removeEventListener("click",hint);
     nextIcon.removeEventListener("click",nextQuestion);
@@ -323,7 +323,7 @@ function hint(){
         hintBox.style.visibility = "hidden";
         
         messsage.style = "margin-top:30px";
-        speaker.addEventListener("click", speakerFunction);
+       // speaker.addEventListener("click", speakerFunction);
         refreshIcon.addEventListener("click", clearInput);
         nextIcon.addEventListener("click", nextQuestion);
         hintIcon.addEventListener("click", hint);
@@ -350,7 +350,7 @@ function nextQuestion(){
     var hintBox = document.getElementById("hintBox");
     var enableBackgroundMusic = document.getElementById("enableBackgroundMusic");
     var enableSoundEffects = document.getElementById("enableSoundEffects");
-    var speaker = document.getElementById("speaker");
+   // var speaker = document.getElementById("speaker");
     var confirm = document.getElementById("confirm");
     var input = document.getElementById("input");
     var refreshIcon = document.getElementById("refreshIcon");
@@ -375,7 +375,7 @@ function nextQuestion(){
     hintBox.style.visibility = "visible";
     hintBox.innerHTML = "Đồng ý";
     confirm.style.visibility = "hidden";
-    speaker.removeEventListener("click",speakerFunction);
+  //  speaker.removeEventListener("click",speakerFunction);
     refreshIcon.removeEventListener("click",clearInput);
     hintIcon.removeEventListener("click",hint);
     nextIcon.removeEventListener("click",nextQuestion);
@@ -406,7 +406,7 @@ function nextQuestion(){
             hintBox.style.visibility = "hidden";
             
             messsage.style = "margin-top:30px";
-            speaker.addEventListener("click", speakerFunction);
+          //  speaker.addEventListener("click", speakerFunction);
             refreshIcon.addEventListener("click",clearInput);
             hintIcon.addEventListener("click", hint);
             nextIcon.addEventListener("click", nextQuestion);
@@ -464,7 +464,7 @@ function nextQuestion(){
             confirm.style.visibility = "visible";
             
             messsage.style = "margin-top:30px";
-            speaker.addEventListener("click", speakerFunction);
+           // speaker.addEventListener("click", speakerFunction);
             refreshIcon.addEventListener("click",clearInput);
             hintIcon.addEventListener("click", hint);
             nextIcon.addEventListener("click", nextQuestion);
@@ -494,7 +494,7 @@ function nextQuestion(){
             confirm.style.visibility = "visible";
             
             messsage.style = "margin-top:30px";
-            speaker.addEventListener("click", speakerFunction);
+           // speaker.addEventListener("click", speakerFunction);
             refreshIcon.addEventListener("click",clearInput);
             hintIcon.addEventListener("click", hint);
             nextIcon.addEventListener("click", nextQuestion);
