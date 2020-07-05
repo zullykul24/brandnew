@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Điền tên cho ảnh</title>
 	<link href="style.css" rel="stylesheet">
+	<link rel="shortcut icon" href="assets/image/favicon.ico"/>
 	<script type="text/javascript" src="config.js"></script>
 	
 	<script type="text/javascript" src="game.js"></script> 
@@ -13,23 +14,24 @@
 </head>
 <body onload ="startWithButton()">
     <div id="mainbox">
-    <img id="startButton" src="assets/startButton.png" width="250px" height="250px" style="visibility: visible;"  onclick="restart();">
+    <img id="startButton" src="assets/image/startButton.png" width="250px" height="250px" style="visibility: visible;"  onclick="restart();">
     <div id="headbox">
         <div id="progress"> 
-            Tiến trình: 1/5
+           
 		</div>
 		<div id="enableBackgroundMusic" ></div>
 		<div id="enableSoundEffects" ></div>
 		<div id="numberOfHint">
-			<img src="assets/bulb.png" id="bulb">
+			<img src="assets/image/bulb.png" id="bulb">
 			<div id="numberOfHintLeft" ></div>
 		</div>
-    </div>
+	</div>
+	<img id="celeb" src="assets/image/celeb2.gif">
     <div id="contentncap">
-		<img id="celeb" src="assets/celeb2.gif">
+		
         <div class="caption" id="caption">
-			<div id="speaker" ></div><!--loa-->
-			<div id="questionHowMany">Có bao nhiêu quả táo ở trong hộp?</div>
+			<div id="speaker" ></div>
+			<div id="questionHowMany"></div>
 		</div>
         <div class="content"> 
 			<div id="boxAndOptionbox">                                      
@@ -102,23 +104,18 @@
         </div>
     </div>
 	</div> 
-	<audio id="howManyApple">
-        <source src="assets/Apple.mp3" type="audio/ogg">
-	</audio>
-	<audio id="howManyBanana">
-		<source src="assets/Banana.mp3" type="audio/ogg">
-	</audio>
+	
 	<audio id="wrong">
-		<source src="assets/wrong.mp3" type="audio/ogg">
+		<source src="assets/sound/wrong.mp3" type="audio/ogg">
 	</audio>
 	<audio id="right">
-		<source src="assets/right.mp3" type="audio/ogg">
+		<source src="assets/sound/right.mp3" type="audio/ogg">
 	</audio>
 	<audio id="backgroundMusic" preload="auto">
-		<source src="assets/backgroundmusic.mp3" type="audio/ogg" loop >
+		<source src="assets/sound/backgroundmusic.mp3" type="audio/ogg" loop >
 	</audio>
 	<audio id="completed">
-		<source src="assets/completed.mp3" type="audio/ogg" >
+		<source src="assets/sound/completed.mp3" type="audio/ogg" >
 	</audio>
    
 </body>

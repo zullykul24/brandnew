@@ -1,5 +1,5 @@
 body {
-    background: url("assets/newbackground.png") center;
+    background: url("assets/image/newbackground.png") center;
     
    
     font-family: sans-serif;
@@ -49,7 +49,7 @@ body {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     
-    background: url("assets/music.png") center no-repeat;
+    background: url("assets/image/music.png") center no-repeat;
     background-color: aquamarine;
     background-size: 40px;
     cursor: pointer;
@@ -64,7 +64,7 @@ body {
     height: 50px;
     text-align: center;
     font-family: Arial;
-    background: url("assets/sound.png") center no-repeat;
+    background: url("assets/image/sound.png") center no-repeat;
     background-size: 50px;
     background-color: aquamarine;
     cursor: pointer;
@@ -141,7 +141,7 @@ body {
 }
 #speaker {
     position: absolute;
-    background-image: url('assets/loadai.png');
+    
     background-repeat: no-repeat; 
     width: 30px;
     height: 30px;
@@ -207,14 +207,14 @@ body {
 }
 #message {
     position: absolute;
-    width: 200px;
-    height: 50px;
-    
+    width: 300px;
+    height: 200px;
+    top: 60px;
     text-align: center;
     font-size: 20px;
-    padding-top: 0px;
-    line-height: 100px;
-    margin-left: 100px;
+
+    line-height: 200px;
+    left: 50px;
    
    
 }
@@ -236,6 +236,7 @@ body {
     top: 110px;
     left: 140px;
    position: absolute;
+   
     width: 120px;
     height: 50px;
     background-color: aquamarine;
@@ -249,14 +250,15 @@ body {
 }
 #xCross {
     position: absolute;
-    top: 140px;
-    left: 650px;
+    top: -10px;
+    left: 460px;
     width: 30px;
     height: 30px;
-    background: url('assets/xCross.png');
+    background: url('assets/image/xCross.png');
     background-size: 30px;
     cursor: pointer;
     visibility: hidden;
+    
 }
 
 #denyBox {
@@ -278,7 +280,7 @@ body {
     width: 200px;
     height: 200px;
     position: absolute;
-    background-image: url('assets/wrongCross.png') ;
+    background-image: url('assets/image/wrongCross.png') ;
     background-position: center;
     background-repeat: no-repeat;
     left: 150px;
@@ -293,7 +295,7 @@ body {
     width: 200px;
     height: 200px;
     position: absolute;
-    background-image: url('assets/vtrue.png') ;
+    background-image: url('assets/image/vtrue.png') ;
     background-position: center;
     background-repeat: no-repeat;
     left: 160px;
@@ -340,7 +342,7 @@ height: 50px;
     position: absolute;
     width: 60px;
     height: 60px;
-    background-image: url("assets/refresh.png") ;
+    background-image: url("assets/image/refresh.png") ;
     background-size: 40px;
     background-repeat: no-repeat;
     cursor: pointer;
@@ -352,7 +354,7 @@ height: 50px;
     position: absolute;
     width: 60px;
     height: 60px;
-    background-image: url("assets/bulb.png");
+    background-image: url("assets/image/bulb.png");
     background-size: 40px;
     background-repeat: no-repeat;
     cursor: pointer;
@@ -363,7 +365,7 @@ height: 50px;
     position: absolute;
     width: 60px;
     height: 60px;
-    background-image: url("assets/nextIcon.png");
+    background-image: url("assets/image/nextIcon.png");
     background-size: 60px;
     background-repeat: no-repeat;
     cursor: pointer;

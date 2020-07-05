@@ -4,15 +4,18 @@ var obj = data1; /// change data here
 
 var lesson = 0; 
 const numOfLesson = obj.numOfLesson;
+
+
 const numOfFruits = [];
 const maxFruits = obj.maxFruits;
 const typeOfFruit = obj.typeOfFruit;
 const imageOfFruit = obj.imageOfFruit;
-const fruitInEnglish = obj.fruitInEnglish;
-var numOfHint = Math.round(numOfLesson / 2);
+
+var numOfHint = Math.round(numOfLesson / 2)  ;
 var isHint = false;
 var backgroundMusicOn = true;
 var soundEffectsOn = true;
+var newHint = true;
 
 
 
@@ -24,7 +27,7 @@ var optionBox = document.getElementById("optionBox");
 var answer = document.getElementById("answer");
 var caption = document.getElementById("caption");
 var wrongCross = document.getElementById("wrongCross");
-var messsage = document.getElementById("message");
+var message = document.getElementById("message");
 var next = document.getElementById("next");
 
 
@@ -67,8 +70,8 @@ var vTrue = document.getElementById("vTrue");
             optionBox.style.filter = "blur(5px)";
             nameOfPicture.style.filter = "blur(5px)";
             alertBox.style.visibility = "visible";
-            messsage.innerHTML = "Bạn đã hoàn thành trò chơi! Chúc mừng";
-            messsage.style = "font-size:20px; line-height:20px; margin-top:15px;";
+            message.innerHTML = "Bạn đã hoàn thành trò chơi!<br> Chúc mừng";
+            message.style = "font-size:20px; line-height:30px; top:25px;";
             next.innerHTML = "Chơi lại";
             next.style.visibility = "visible";
             celebGif.style.visibility = "visible";
@@ -85,11 +88,12 @@ var vTrue = document.getElementById("vTrue");
             next.onclick = function(){
                 location.reload();
             }
-        },1000)
+        },1500)
         
     }
     else if(inputValue == x && lesson < numOfLesson - 1){
         lesson = lesson + 1;
+        newHint = true;
         document.getElementById("hintIcon").addEventListener("click", hint);
         
         if(soundEffectsOn == true){playAudio("right");}
@@ -165,8 +169,7 @@ function restart()
     document.getElementById("questionHowMany").innerHTML = "Có bao nhiêu quả " + typeOfFruit + " ở trong hộp?";
     document.getElementById("numberOfFruitIs").innerHTML = "Số quả " + typeOfFruit + " là:";
 
-    //document.getElementById("speaker").addEventListener("click", speakerFunction);
-    //document.getElementById("confirm").addEventListener("click", checkResult);
+    
     
     document.getElementById("refreshIcon").addEventListener("click",clearInput);
     document.getElementById("hintIcon").addEventListener("click", hint);
@@ -233,17 +236,7 @@ function enableSoundEffectsFunction(){
        
     }
 }
-/*function speakerFunction(){
-    var howManyFruit = document.getElementById(fruitInEnglish);
-    
-    if(soundEffectsOn == true){
-        playAudio("howMany" + fruitInEnglish);
-        howManyFruit.volume = 1;
-    }
-    else{
-        howManyFruit.volume = 0;
-    }
-}*/
+
 function playAudio(play) {
     document.getElementById(play).play();
 }
@@ -251,15 +244,13 @@ function clearInput(){
     var input = document.getElementById("input");
     input.value = "";
 }
-function click(){
-    //Nothing happens here
-}
+
 function hint(){
    
     var answer = document.getElementById("answer");
     var caption = document.getElementById("caption");
    
-    var messsage = document.getElementById("message");
+    var message = document.getElementById("message");
     var next = document.getElementById("next");
     var optionBox = document.getElementById("optionBox");
     var headbox = document.getElementById("headbox");
@@ -275,7 +266,7 @@ function hint(){
     var hintIcon = document.getElementById("hintIcon");
     var nextIcon = document.getElementById("nextIcon");
     var xCross = document.getElementById("xCross");
-    //xCross.style.visibility = "visible";
+    
    
     headbox.style.filter = "blur(5px)";
     box.style.filter = "blur(5px)";
@@ -287,9 +278,12 @@ function hint(){
     answer.style.filter = "blur(5px)";
     alertBox.style.visibility = "visible";
     next.style.visibility = "hidden";
-    hintBox.style.visibility = "visible";
-    hintBox.innerHTML = "Được rồi";
-    //speaker.removeEventListener("click",speakerFunction);
+
+
+
+   
+    xCross.style.visibility = "visible";
+    
     refreshIcon.removeEventListener("click",clearInput);
     hintIcon.removeEventListener("click",hint);
     nextIcon.removeEventListener("click",nextQuestion);
@@ -300,18 +294,23 @@ function hint(){
     confirm.style.visibility = "hidden";
     input.disabled = true;
     
+    
     if(numOfHint > 0){
-        messsage.innerHTML = "Mỗi hàng có 10 quả "+ typeOfFruit +", số quả "+typeOfFruit+" ở đây là: "+ numOfFruits[lesson];
-        messsage.style = "font-size:20px; line-height:20px; margin-top:15px";
-        numOfHint = numOfHint - 1;
+        message.innerHTML = "Mỗi hàng có 10 quả "+ typeOfFruit +", số quả "+typeOfFruit+" ở đây là: "+ numOfFruits[lesson];
+        message.style = "font-size:20px; line-height:30px; margin-top:15px";
+        if(newHint == true) {
+            numOfHint = numOfHint - 1;
+            newHint = false;
+        }
         numberOfHintLeft.innerHTML = numOfHint;
     }
     else{
-        messsage.style = "font-size:20px; line-height:20px; margin-top:15px";
-        messsage.innerHTML = "Bạn đã sử dụng hết quyền trợ giúp";
+        message.style = "font-size:20px; line-height:30px; margin-top:15px";
+       if(newHint == true) message.innerHTML = "Bạn đã sử dụng hết quyền trợ giúp";
+        hintBox.style.visibility = "hidden";
     }
     
-    hintBox.onclick = function(){
+    xCross.onclick = function(){
         headbox.style.filter = "none";
         box.style.filter = "none";
         caption.style.filter = "none";
@@ -321,9 +320,10 @@ function hint(){
         
         
         hintBox.style.visibility = "hidden";
+        xCross.style.visibility = "hidden";
         
-        messsage.style = "margin-top:30px";
-       // speaker.addEventListener("click", speakerFunction);
+        message.style = "margin-top:30px";
+       
         refreshIcon.addEventListener("click", clearInput);
         nextIcon.addEventListener("click", nextQuestion);
         hintIcon.addEventListener("click", hint);
@@ -341,7 +341,7 @@ function nextQuestion(){
     var answer = document.getElementById("answer");
     var caption = document.getElementById("caption");
    
-    var messsage = document.getElementById("message");
+    var message = document.getElementById("message");
     var next = document.getElementById("next");
     var optionBox = document.getElementById("optionBox");
     var headbox = document.getElementById("headbox");
@@ -350,7 +350,7 @@ function nextQuestion(){
     var hintBox = document.getElementById("hintBox");
     var enableBackgroundMusic = document.getElementById("enableBackgroundMusic");
     var enableSoundEffects = document.getElementById("enableSoundEffects");
-   // var speaker = document.getElementById("speaker");
+  
     var confirm = document.getElementById("confirm");
     var input = document.getElementById("input");
     var refreshIcon = document.getElementById("refreshIcon");
@@ -364,18 +364,18 @@ function nextQuestion(){
     headbox.style.filter = "blur(5px)";
     box.style.filter = "blur(5px)";
     optionBox.style.filter = "blur(5px)";
-    denyBox.style.visibility = "visible";
-    //xCross.style.visibility = "visible";
-    hintBox.innerHTML = "Đồng ý";
-    hintBox.style = "left: 70px; width: 120px; top:120px;"
+   
+    xCross.style.visibility = "visible";
+    hintBox.innerHTML = "Bỏ qua";
+    hintBox.style = "left: 140px; width: 120px; top:120px;"
     caption.style.filter = "blur(5px)";
     answer.style.filter = "blur(5px)";
     alertBox.style.visibility = "visible";
     next.style.visibility = "hidden";
     hintBox.style.visibility = "visible";
-    hintBox.innerHTML = "Đồng ý";
+    
     confirm.style.visibility = "hidden";
-  //  speaker.removeEventListener("click",speakerFunction);
+ 
     refreshIcon.removeEventListener("click",clearInput);
     hintIcon.removeEventListener("click",hint);
     nextIcon.removeEventListener("click",nextQuestion);
@@ -383,10 +383,9 @@ function nextQuestion(){
     enableSoundEffects.removeEventListener("click", enableSoundEffectsFunction);
 
     if(numOfHint >= 2){
-        messsage.innerHTML = "Bỏ qua câu hỏi cần 2 sự trợ giúp, đồng ý chứ?"
-        messsage.style = "font-size:20px; line-height:20px; margin-top:15px";
-       // numOfHint = numOfHint - 2;
-       // numberOfHintLeft.innerHTML = numOfHint;
+        message.innerHTML = "Bỏ qua câu hỏi cần 2 sự trợ giúp, có bỏ qua không?"
+        message.style = "font-size:20px; line-height:30px; top:45px;";
+      
         hintBox.onclick = function(){
             hintBox.style = "left: 140px; width: 120px; top:120px;"
             headbox.style.filter = "none";
@@ -395,18 +394,19 @@ function nextQuestion(){
             answer.style.filter = "none";
             alertBox.style.visibility = "hidden";
             optionBox.style.filter = "none";
+            xCross.style.visibility = "hidden";
 
             numOfHint = numOfHint - 2;
             numberOfHintLeft.innerHTML = numOfHint;
             denyBox.style.visibility = "hidden";
-            //xCross.style.visibility = "hidden";
+           
             confirm.style.visibility = "visible";
             
             
             hintBox.style.visibility = "hidden";
             
-            messsage.style = "margin-top:30px";
-          //  speaker.addEventListener("click", speakerFunction);
+            message.style = "margin-top:30px";
+          
             refreshIcon.addEventListener("click",clearInput);
             hintIcon.addEventListener("click", hint);
             nextIcon.addEventListener("click", nextQuestion);
@@ -438,8 +438,8 @@ function nextQuestion(){
                     optionBox.style.filter = "blur(5px)";
                     nameOfPicture.style.filter = "blur(5px)";
                     alertBox.style.visibility = "visible";
-                    messsage.innerHTML = "Bạn đã hoàn thành trò chơi! Chúc mừng";
-                    messsage.style = "font-size:20px; line-height:20px; margin-top:15px;";
+                    message.innerHTML = "Bạn đã hoàn thành trò chơi! Chúc mừng";
+                    message.style = "font-size:20px; line-height:20px; margin-top:15px;";
                     next.innerHTML = "Chơi lại";
                     next.style.visibility = "visible";
                     next.onclick = function(){
@@ -449,7 +449,7 @@ function nextQuestion(){
             }
 
         }
-        denyBox.onclick = function(){
+        xCross.onclick = function(){
             hintBox.style = "left: 140px; width: 120px; top:120px;"
             headbox.style.filter = "none";
             box.style.filter = "none";
@@ -457,14 +457,13 @@ function nextQuestion(){
             answer.style.filter = "none";
             alertBox.style.visibility = "hidden";
             optionBox.style.filter = "none";
-            denyBox.style.visibility = "hidden";
-            //next.style.visibility = "visible";
-           // xCross.style.visibility = "hidden";
+            
             hintBox.style.visibility = "hidden";
             confirm.style.visibility = "visible";
             
-            messsage.style = "margin-top:30px";
-           // speaker.addEventListener("click", speakerFunction);
+            message.style = "margin-top:30px";
+            xCross.style.visibility = "hidden";
+           
             refreshIcon.addEventListener("click",clearInput);
             hintIcon.addEventListener("click", hint);
             nextIcon.addEventListener("click", nextQuestion);
@@ -475,13 +474,12 @@ function nextQuestion(){
         }
     }
     else{
-        messsage.style = "font-size:20px; line-height:20px; margin-top:15px";
-        messsage.innerHTML = "Bạn không còn đủ sự trợ giúp";
+        message.style = "font-size:20px; line-height:20px; margin-top:15px";
+        message.innerHTML = "Bạn không còn đủ sự trợ giúp";
         denyBox.style.visibility = "hidden";
-     //xCross.style.visibility = "hidden";
-        hintBox.innerHTML = "Được rồi";
-        hintBox.style = "left: 140px; width: 120px; top:120px; visibility:visible;"
-        hintBox.onclick = function(){
+     
+        hintBox.style.visibility = "hidden";
+        xCross.onclick = function(){
             
             headbox.style.filter = "none";
             box.style.filter = "none";
@@ -489,12 +487,13 @@ function nextQuestion(){
             answer.style.filter = "none";
             alertBox.style.visibility = "hidden";
             optionBox.style.filter = "none";
-            //next.style.visibility = "visible";
+            xCross.style.visibility = "hidden";
+           
             hintBox.style.visibility = "hidden";
             confirm.style.visibility = "visible";
             
-            messsage.style = "margin-top:30px";
-           // speaker.addEventListener("click", speakerFunction);
+            message.style = "margin-top:30px";
+           
             refreshIcon.addEventListener("click",clearInput);
             hintIcon.addEventListener("click", hint);
             nextIcon.addEventListener("click", nextQuestion);
