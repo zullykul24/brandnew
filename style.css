@@ -97,6 +97,15 @@ body {
     visibility: hidden;
     z-index: 2;
 }
+#cover {
+    height: 700px;
+    width: 500px;
+    position: absolute;
+    top: 0px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 2;
+}
 #bulb {
     position: absolute;
     
@@ -258,6 +267,7 @@ body {
     background-size: 30px;
     cursor: pointer;
     visibility: hidden;
+    z-index: 20;
     
 }
 

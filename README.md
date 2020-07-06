@@ -34,7 +34,7 @@ Thêm/thay đổi dữ liệu trong file config.js như sau:
 ![Screenshot](https://github.com/zullykul24/brandnew/blob/master/assets/forReadme/changeConfig.png)
 
 Sau đó tại file game.js thay đổi biến obj như sau:
-> var obj = data2 (ở đây chọn bộ dữ liệu data2)
+> const obj = data2 (ở đây chọn bộ dữ liệu data2)
 
 
 

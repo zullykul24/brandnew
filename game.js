@@ -11,7 +11,7 @@ const maxFruits = obj.maxFruits;
 const typeOfFruit = obj.typeOfFruit;
 const imageOfFruit = obj.imageOfFruit;
 
-let numOfHint = Math.round(numOfLesson / 2)  ;
+let numOfHint = Math.round(numOfLesson / 2)  + 100;
 let isHint = false;
 let backgroundMusicOn = true;
 let soundEffectsOn = true;
@@ -47,12 +47,13 @@ const refreshIcon = document.getElementById("refreshIcon");
 const hintIcon = document.getElementById("hintIcon");
 const nextIcon = document.getElementById("nextIcon");
 const xCross = document.getElementById("xCross");
+const cover = document.getElementById("cover");// it covers the behind of the screen when a message box appears
 
 
 
 function checkResult(x){
 let inputValue = document.getElementById("input").value; 
-    if(inputValue == x && lesson == numOfLesson - 1){
+    if(inputValue == x && lesson == numOfLesson - 1){    // final question
         if(soundEffectsOn == true){playAudio("right");}
         setTimeout(function(){  
             nameOfPicture.style.visibility = "visible";
@@ -64,56 +65,23 @@ let inputValue = document.getElementById("input").value;
             setTimeout(function(){
                 vTrue.style.visibility = "hidden";
                 vTrue.style = "background-size : 0px;"
-    
             },1000)  
             if(x < 10)nameOfPicture.innerHTML = x + " quả";
             else if(x%10 == 0)nameOfPicture.innerHTML = x/10 + " chục quả";
             else nameOfPicture.innerHTML = (x - x%10)/10 + " chục và " + x%10 + " quả"; 
-           
         },500)
         setTimeout(function(){
-            headbox.style.filter = "blur(5px)";
-            box.style.filter = "blur(5px)";
-            caption.style.filter = "blur(5px)";
-            answer.style.filter = "blur(5px)";
-            optionBox.style.filter = "blur(5px)";
-            nameOfPicture.style.filter = "blur(5px)";
-            alertBox.style.visibility = "visible";
-            message.innerHTML = "Bạn đã hoàn thành trò chơi!<br> Chúc mừng";
-            message.style = "font-size:20px; line-height:30px; top:25px;";
-            next.innerHTML = "Chơi lại";
-            next.style.visibility = "visible";
-            celebGif.style.visibility = "visible";
-            
-            if(soundEffectsOn == true){
-                playAudio("completed");
-                completedSound.volume = 1;
-            }
-            else{
-                completedSound.volume = 0;
-            }
-
-
-            next.onclick = function(){
-                location.reload();
-            }
+            finishScreen();
         },1500)
-        
     }
     else if(inputValue == x && lesson < numOfLesson - 1){
-        lesson = lesson + 1;
-        newHint = true;
-        document.getElementById("hintIcon").addEventListener("click", hint);
-        
         if(soundEffectsOn == true){playAudio("right");}
         setTimeout(function(){  
             nameOfPicture.style.visibility = "visible";
             vTrue.style.visibility = "visible";
-            
             if(x < 10)nameOfPicture.innerHTML = x + " quả";
             else if(x%10 == 0)nameOfPicture.innerHTML = x/10 + " chục quả";
             else nameOfPicture.innerHTML = (x - x%10)/10 + " chục và " + x%10 + " quả"; 
-           
         },500)    
         setTimeout(function(){
             vTrue.style.backgroundSize = "150px";
@@ -122,27 +90,16 @@ let inputValue = document.getElementById("input").value;
         setTimeout(function(){
             vTrue.style.visibility = "hidden";
             vTrue.style = "background-size : 1px;"
-
         },2000)  
         setTimeout(function(){
             mainBox.style.filter =   "blur(5px)";
             nameOfPicture.style.visibility = "hidden";
         },2100)
         setTimeout(function(){
-            mainBox.style.filter = "none";
-            input.value = "";
-            for(let i = 0;i < numOfFruits[lesson]; i++){
-                fruits[i].style = "background-image: url('"+ imageOfFruit +"');";
-            }
-            for(let i= numOfFruits[lesson]; i < maxFruits;i++){
-                fruits[i].style = "background-image: none;";
-            }
-            progress.innerHTML = "Tiến trình: " + (lesson + 1) + "/" + numOfLesson;
+            jumpToTheNextQuestion();
         },2500) 
-        
     }
-
-    if(inputValue != x){
+    if(inputValue != x){  // if the answer is wrong
         if(soundEffectsOn == true){playAudio("wrong");}
         wrongCross.style = "background-size : 200px;"
         wrongCross.style.visibility = "visible";
@@ -156,10 +113,62 @@ let inputValue = document.getElementById("input").value;
         },1500)  
     }
 }
-
+function jumpToTheNextQuestion(){
+    lesson = lesson + 1;
+    newHint = true;
+    mainBox.style.filter = "none";
+    input.value = "";
+    for(let i = 0;i < numOfFruits[lesson]; i++){
+        fruits[i].style = "background-image: url('"+ imageOfFruit +"');";
+    }
+    for(let i= numOfFruits[lesson]; i < maxFruits;i++){
+        fruits[i].style = "background-image: none;";
+    }
+    progress.innerHTML = "Tiến trình: " + (lesson + 1) + "/" + numOfLesson;
+}
+function finishScreen(){
+    blurScreen();
+    celebGif.style.visibility = "visible";
+    if(soundEffectsOn == true){
+        playAudio("completed");
+        completedSound.volume = 1;
+    }
+    else{
+        completedSound.volume = 0;
+    }
+    message.innerHTML = "Bạn đã hoàn thành trò chơi! Chúc mừng";
+    message.style = "font-size:20px; line-height:20px;";
+    next.innerHTML = "Chơi lại";
+    next.style.visibility = "visible";
+    next.onclick = function(){
+        location.reload();
+    }
+}
+function blurScreen(){
+    headbox.style.filter = "blur(5px)";
+    box.style.filter = "blur(5px)";
+    caption.style.filter = "blur(5px)";
+    answer.style.filter = "blur(5px)";
+    optionBox.style.filter = "blur(5px)";
+    nameOfPicture.style.filter = "blur(5px)";
+    alertBox.style.visibility = "visible";
+    cover.style.visibility = "visible";
+}
+function clearScreen(){
+    headbox.style.filter = "none";
+    box.style.filter = "none";
+    caption.style.filter = "none";
+    answer.style.filter = "none";
+    optionBox.style.filter = "none"; 
+    nameOfPicture.style.filter = "none";
+    alertBox.style.visibility = "hidden";
+    xCross.style.visibility = "hidden";
+    cover.style.visibility = "hidden";
+    hintBox.style.visibility = "hidden";
+}
 function restart()
 { 
-    for(let i = 0;i < numOfLesson;i++){numOfFruits[i]= Math.floor((Math.random() * maxFruits) + 1);}// generate array of random integers from 1 to 30
+    for(let i = 0;i < numOfLesson;i++){numOfFruits[i]= Math.floor((Math.random() * maxFruits) + 1);}// generate array of random integers from 1 to maxFruits
     lesson = 0; 
     if(backgroundMusicOn == true)playAudio("backgroundMusic");
     document.getElementById("questionHowMany").innerHTML = "Có bao nhiêu quả " + typeOfFruit + " ở trong hộp?";
@@ -218,26 +227,14 @@ function playAudio(play) {
 function clearInput(){
     input.value = "";
 }
-
 function hint(){
-    headbox.style.filter = "blur(5px)";
-    box.style.filter = "blur(5px)";
-    optionBox.style.filter = "blur(5px)";
-    caption.style.filter = "blur(5px)";
-    answer.style.filter = "blur(5px)";
-    alertBox.style.visibility = "visible";
-    next.style.visibility = "hidden";
+    blurScreen();
     xCross.style.visibility = "visible";
-    refreshIcon.removeEventListener("click",clearInput);
-    hintIcon.removeEventListener("click",hint);
-    nextIcon.removeEventListener("click",nextQuestion);
-    enableBackgroundMusic.removeEventListener("click", enableBackgroundMusicFunction);
-    enableSoundEffects.removeEventListener("click", enableSoundEffectsFunction);
-    confirmButton.style.visibility = "hidden";
-    input.disabled = true;
-    if(numOfHint > 0){
+    hintBox.style.visibility = "hidden";
+    next.style.visibility = "hidden";
+        if(numOfHint > 0){
         message.innerHTML = "Mỗi hàng có 10 quả "+ typeOfFruit +", số quả "+typeOfFruit+" ở đây là: "+ numOfFruits[lesson];
-        message.style = "font-size:20px; line-height:30px; margin-top:15px";
+        message.style = "font-size:20px; line-height:30px; ";
         if(newHint == true) {
             numOfHint = numOfHint - 1;
             newHint = false;
@@ -249,176 +246,49 @@ function hint(){
        if(newHint == true) message.innerHTML = "Bạn đã sử dụng hết quyền trợ giúp";
         hintBox.style.visibility = "hidden";
     }
-    
     xCross.onclick = function(){
-        headbox.style.filter = "none";
-        box.style.filter = "none";
-        caption.style.filter = "none";
-        answer.style.filter = "none";
-        alertBox.style.visibility = "hidden";
-        optionBox.style.filter = "none";
-        
-        
-        hintBox.style.visibility = "hidden";
-        xCross.style.visibility = "hidden";
-        
-        message.style = "margin-top:30px";
-       
-        refreshIcon.addEventListener("click", clearInput);
-        nextIcon.addEventListener("click", nextQuestion);
-        hintIcon.addEventListener("click", hint);
-        
-        confirmButton.style.visibility = "visible";
-        enableBackgroundMusic.addEventListener("click", enableBackgroundMusicFunction);
-        enableSoundEffects.addEventListener("click", enableSoundEffectsFunction);
-        input.disabled = false;
-
+        clearScreen();
     }
-   
-
 }
 function nextQuestion(){
-    headbox.style.filter = "blur(5px)";
-    box.style.filter = "blur(5px)";
-    optionBox.style.filter = "blur(5px)";
-   
+    blurScreen();
     xCross.style.visibility = "visible";
     hintBox.innerHTML = "Bỏ qua";
     hintBox.style = "left: 140px; width: 120px; top:120px;"
-    caption.style.filter = "blur(5px)";
-    answer.style.filter = "blur(5px)";
-    alertBox.style.visibility = "visible";
     next.style.visibility = "hidden";
     hintBox.style.visibility = "visible";
-    
-    confirmButton.style.visibility = "hidden";
- 
-    refreshIcon.removeEventListener("click",clearInput);
-    hintIcon.removeEventListener("click",hint);
-    nextIcon.removeEventListener("click",nextQuestion);
-    enableBackgroundMusic.removeEventListener("click", enableBackgroundMusicFunction);
-    enableSoundEffects.removeEventListener("click", enableSoundEffectsFunction);
-
     if(numOfHint >= 2){
         message.innerHTML = "Bỏ qua câu hỏi cần 2 sự trợ giúp, có bỏ qua không?"
         message.style = "font-size:20px; line-height:30px; top:45px;";
-      
         hintBox.onclick = function(){
             hintBox.style = "left: 140px; width: 120px; top:120px;"
-            headbox.style.filter = "none";
-            box.style.filter = "none";
-            caption.style.filter = "none";
-            answer.style.filter = "none";
-            alertBox.style.visibility = "hidden";
-            optionBox.style.filter = "none";
-            xCross.style.visibility = "hidden";
-
+            clearScreen();
             numOfHint = numOfHint - 2;
             numberOfHintLeft.innerHTML = numOfHint;
-            denyBox.style.visibility = "hidden";
-           
-            confirmButton.style.visibility = "visible";
-            
-            
-            hintBox.style.visibility = "hidden";
-            
             message.style = "margin-top:30px";
-          
-            refreshIcon.addEventListener("click",clearInput);
-            hintIcon.addEventListener("click", hint);
-            nextIcon.addEventListener("click", nextQuestion);
-            enableBackgroundMusic.addEventListener("click", enableBackgroundMusicFunction);
-            enableSoundEffects.addEventListener("click", enableSoundEffectsFunction);
-            
-            
-            input.disabled = false;
             if(lesson < numOfLesson - 1){
                 setTimeout(function(){
-                    lesson = lesson + 1;
-                    
-                    input.value = "";
-                    for(let i = 0;i < numOfFruits[lesson]; i++){
-                        fruits[i].style = "background-image: url('"+ imageOfFruit +"');";
-                    }
-                    for(let i= numOfFruits[lesson]; i < maxFruits;i++){
-                        fruits[i].style = "background-image: none;";
-                    }
-                    progress.innerHTML = "Tiến trình: " + (lesson + 1) + "/" + numOfLesson;
+                    jumpToTheNextQuestion();
                 },100) 
             }
             else {
                 setTimeout(function(){
-                    headbox.style.filter = "blur(5px)";
-                    box.style.filter = "blur(5px)";
-                    caption.style.filter = "blur(5px)";
-                    answer.style.filter = "blur(5px)";
-                    optionBox.style.filter = "blur(5px)";
-                    nameOfPicture.style.filter = "blur(5px)";
-                    alertBox.style.visibility = "visible";
-                    message.innerHTML = "Bạn đã hoàn thành trò chơi! Chúc mừng";
-                    message.style = "font-size:20px; line-height:20px; margin-top:15px;";
-                    next.innerHTML = "Chơi lại";
-                    next.style.visibility = "visible";
-                    next.onclick = function(){
-                        location.reload();
-                    }
+                    finishScreen();
                 },100)
             }
-
         }
         xCross.onclick = function(){
-            hintBox.style = "left: 140px; width: 120px; top:120px;"
-            headbox.style.filter = "none";
-            box.style.filter = "none";
-            caption.style.filter = "none";
-            answer.style.filter = "none";
-            alertBox.style.visibility = "hidden";
-            optionBox.style.filter = "none";
-            
-            hintBox.style.visibility = "hidden";
-            confirmButton.style.visibility = "visible";
-            
+            clearScreen();
             message.style = "margin-top:30px";
-            xCross.style.visibility = "hidden";
-           
-            refreshIcon.addEventListener("click",clearInput);
-            hintIcon.addEventListener("click", hint);
-            nextIcon.addEventListener("click", nextQuestion);
-            enableBackgroundMusic.addEventListener("click", enableBackgroundMusicFunction);
-            enableSoundEffects.addEventListener("click", enableSoundEffectsFunction);
-            
-            input.disabled = false;
         }
     }
     else{
         message.style = "font-size:20px; line-height:20px; margin-top:15px";
         message.innerHTML = "Bạn không còn đủ sự trợ giúp";
-        denyBox.style.visibility = "hidden";
-     
         hintBox.style.visibility = "hidden";
         xCross.onclick = function(){
-            
-            headbox.style.filter = "none";
-            box.style.filter = "none";
-            caption.style.filter = "none";
-            answer.style.filter = "none";
-            alertBox.style.visibility = "hidden";
-            optionBox.style.filter = "none";
-            xCross.style.visibility = "hidden";
-           
-            hintBox.style.visibility = "hidden";
-            confirmButton.style.visibility = "visible";
-            
+            clearScreen();
             message.style = "margin-top:30px";
-           
-            refreshIcon.addEventListener("click",clearInput);
-            hintIcon.addEventListener("click", hint);
-            nextIcon.addEventListener("click", nextQuestion);
-            enableBackgroundMusic.addEventListener("click", enableBackgroundMusicFunction);
-            enableSoundEffects.addEventListener("click", enableSoundEffectsFunction);
-            
-            input.disabled = false;
-            
         }
     }
     
